@@ -20,22 +20,24 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project }) => {
 
   // Transform scroll progress (0 to 1) into other values for animation
   // Example 1: Scale (Zoom effect) - Scales up in the middle viewport, down at edges
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
+  const scale = useTransform(scrollYProgress, [0, 0.55, 0.9], [0.8, 1.05, 0.8]);
   // Example 2: Opacity (Fade effect) - Fades slightly at edges
   const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.7, 1, 1, 0.7]);
 
   return (
     // Apply ref and make the section a motion component. Apply dynamic styles.
+    // Includes snap-start and min-h-screen if using page-specific snapping
     <motion.section
       ref={sectionRef}
       id={`project-${project.id}`} // ID for potential linking
       // Apply the transformed styles for scroll-linked animation:
       style={{
-         scale,
-         opacity
+          scale,
+          opacity
       }}
       // Base styling for the section (DARK THEME APPLIED):
-      className="py-16 px-4 min-h-[70vh] flex items-center justify-center bg-gray-800 scroll-mt-16" // Dark background, scroll margin
+      // Added snap-start and min-h-screen for potential snapping context
+      className="py-16 px-4 min-h-screen flex items-center justify-center bg-gray-800 scroll-mt-16 snap-start"
     >
       {/* Inner container - scales/fades with the section */}
       <div className="container mx-auto grid md:grid-cols-2 gap-10 items-center">
@@ -59,18 +61,27 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project }) => {
             </div>
           </div>
 
-          {/* Links (Buttons already somewhat dark-theme friendly) */}
-          <div className="flex flex-wrap gap-4 mt-auto">
+          {/* --- Links --- */}
+          <div className="flex flex-wrap gap-4 mt-6 pt-4 border-t border-gray-700">
+            {/* View Live Button */}
             {project.liveUrl && (
               <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition-colors duration-200 text-sm font-medium">
                 View Live
               </Link>
             )}
+            {/* View Repo Button */}
             {project.repoUrl && (
               <Link href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="inline-block bg-gray-700 text-white px-5 py-2 rounded hover:bg-gray-800 transition-colors duration-200 text-sm font-medium">
                 View Repo
               </Link>
             )}
+            {/* Learn More Button */}
+            <Link
+              href={`/projects/${project.id}`} // Dynamic link using project ID
+              className="inline-block bg-teal-600 text-white px-5 py-2 rounded hover:bg-teal-700 transition-colors duration-200 text-sm font-medium" // Example styling
+            >
+              Learn More
+            </Link>
           </div>
         </div>
 
@@ -82,7 +93,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project }) => {
           {project.imageUrl ? (
             <img src={project.imageUrl} alt={`${project.title} screenshot`} className="w-full h-full object-cover" />
           ) : (
-             // Dark Theme Placeholder Text
+              // Dark Theme Placeholder Text
             <span className="text-gray-400">Project Visual Placeholder</span>
           )}
         </div>
