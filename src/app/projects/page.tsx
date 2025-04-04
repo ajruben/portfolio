@@ -1,19 +1,28 @@
 // src/app/projects/page.tsx
 import type { Metadata } from "next";
+import ProjectSection from "@/components/ProjectSection"; // Import the NEW component
+import { projectsData } from "@/data/projects";   // Import project data
 
 export const metadata: Metadata = {
   title: "My Projects - Ruben Swarts",
-  description: "A showcase of projects I've built.",
+  description: "A showcase of projects I've built, demonstrating modern web technologies.",
 };
 
-// We will add project cards here in the next step
 export default function ProjectsPage() {
   return (
+    // Main container for the projects page content
     <div>
-      <h1 className="text-3xl font-bold mb-6">My Projects</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Project Cards will go here */}
-        <p>Project cards coming soon...</p>
+      <h1 className="text-4xl font-bold mb-12 text-center text-gray-800">My Projects</h1>
+
+      {/* Container for the vertical list of project sections */}
+      <div className="flex flex-col"> {/* Vertical layout */}
+        {projectsData.length > 0 ? (
+          projectsData.map((project, index) => (
+            <ProjectSection key={project.id} project={project} /> // Render each project using the section component
+          ))
+        ) : (
+          <p className="text-center text-gray-500">More projects coming soon!</p>
+        )}
       </div>
     </div>
   );
