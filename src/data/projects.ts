@@ -28,5 +28,32 @@ export const projectsData: Project[] = [
         liveUrl: "https://project-two-live-demo.com",
         repoUrl: "https://github.com/your-username/project-two-repo",
     },
+    {
+        id: 3,
+        title: "Placeholder Project Three",
+        description: "Description for the third project, highlighting key features and technologies used.",
+        technologies: ["Vue.js", "Firebase", "SCSS"],
+        // imageUrl: "/images/project-three.jpg", // Add image later
+        // liveUrl: "https://project-three-live.com",
+        repoUrl: "https://github.com/your-username/project-three-repo",
+    },
+    {
+        id: 4,
+        title: "Data Visualization Dashboard",
+        description: "An interactive dashboard built with D3.js to visualize complex datasets.",
+        technologies: ["D3.js", "JavaScript", "HTML5", "CSS3"],
+        imageUrl: "/images/project-four.png", // Add image later
+        // liveUrl: "https://data-viz-demo.com",
+        repoUrl: "https://github.com/your-username/data-viz-repo",
+    },
+    {
+        id: 5,
+        title: "E-commerce Store Backend",
+        description: "A RESTful API for an e-commerce platform using Python and Django.",
+        technologies: ["Python", "Django", "PostgreSQL", "REST API"],
+        // imageUrl: "/images/project-five.svg", // Add image later
+        // liveUrl: null, // No live demo for backend usually
+        repoUrl: "https://github.com/your-username/ecommerce-backend-repo",
+    }
     // Add more of your actual projects...
 ];
