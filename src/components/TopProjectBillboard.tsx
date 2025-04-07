@@ -37,7 +37,8 @@ const TopProjectBillboard: React.FC<TopProjectBillboardProps> = ({ projects }) =
       >
         {projects.map((project) => (
           <SwiperSlide key={project.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden group/slide"> {/* Adjusted for potential dark theme */}
-            <Link href={`#project-${project.id}`} className="block group"> {/* Added group here too */}
+            {/* --- Link to the project detail page --- */}
+            <Link href={`/projects/${project.id}`} className="block group"> {/* Changed href */}
               {/* --- Image Container --- */}
               <div className="aspect-video relative overflow-hidden"> {/* Ensure relative positioning for fill Image */}
                 {project.imageUrl ? (

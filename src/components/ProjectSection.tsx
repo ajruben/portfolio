@@ -7,9 +7,17 @@ import { Project } from '@/data/projects';
 
 interface ProjectSectionProps {
   project: Project;
+  prevProjectId?: number | null; // ID of the previous project in the filtered list
+  nextProjectId?: number | null; // ID of the next project in the filtered list
+  scrollToProject: (id: number) => void; // Function to scroll to a specific project ID
 }
 
-const ProjectSection: React.FC<ProjectSectionProps> = ({ project }) => {
+const ProjectSection: React.FC<ProjectSectionProps> = ({
+  project,
+  prevProjectId,
+  nextProjectId,
+  scrollToProject
+}) => {
   const sectionRef = useRef<HTMLElement>(null); // Ref for the section element
 
   // Track scroll progress relative to this section within the viewport
@@ -19,8 +27,8 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project }) => {
   });
 
   // Transform scroll progress (0 to 1) into other values for animation
-  // Example 1: Scale (Zoom effect) - Scales up in the middle viewport, down at edges
-  const scale = useTransform(scrollYProgress, [0, 0.55, 0.9], [0.8, 1.05, 0.8]);
+  // Example 1: Scale (Zoom effect) - Increased zoom range
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 1.1, 0.7]); // Increased range from 0.8-1.05 to 0.7-1.1
   // Example 2: Opacity (Fade effect) - Fades slightly at edges
   const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.7, 1, 1, 0.7]);
 
@@ -36,9 +44,40 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ project }) => {
           opacity
       }}
       // Base styling for the section (DARK THEME APPLIED):
-      // Added snap-start and min-h-screen for potential snapping context
-      className="py-16 px-4 min-h-screen flex items-center justify-center bg-gray-800 scroll-mt-16 snap-start"
+      // Removed min-h-screen, added rounded-lg, adjusted padding
+      // Added relative positioning for arrow buttons
+      className="py-12 px-4 flex items-center justify-center bg-gray-800 scroll-mt-16 snap-start relative rounded-lg shadow-xl my-12" // Added rounded-lg, shadow, vertical margin
     >
+      {/* --- Navigation Arrows --- */}
+      {/* Up Arrow (Moved to Left Border) */}
+      {prevProjectId !== null && prevProjectId !== undefined && (
+        <button
+          onClick={() => scrollToProject(prevProjectId)}
+          aria-label="Scroll to previous project"
+          // Positioned vertically center, just outside the left edge
+          className="absolute top-1/2 left-[-1rem] md:left-[-1.5rem] transform -translate-y-1/2 z-10 p-2 rounded-full text-gray-400 hover:text-blue-400 hover:bg-gray-700/50 transition-colors backdrop-blur-sm" // Changed left-4 to negative value
+        >
+          {/* Standard Chevron Up Icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+          </svg>
+        </button>
+      )}
+      {/* Down Arrow (Moved to Right Border) */}
+      {nextProjectId !== null && nextProjectId !== undefined && (
+         <button
+          onClick={() => scrollToProject(nextProjectId)}
+          aria-label="Scroll to next project"
+          // Positioned vertically center, just outside the right edge
+          className="absolute top-1/2 right-[-1rem] md:right-[-1.5rem] transform -translate-y-1/2 z-10 p-2 rounded-full text-gray-400 hover:text-blue-400 hover:bg-gray-700/50 transition-colors backdrop-blur-sm" // Changed right-4 to negative value
+        >
+          {/* Standard Chevron Down Icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+        </button>
+      )}
+
       {/* Inner container - scales/fades with the section */}
       <div className="container mx-auto grid md:grid-cols-2 gap-10 items-center">
 
