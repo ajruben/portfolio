@@ -30,26 +30,11 @@ export default function ProjectsPage({
       )}
       {/* --- End Carousel --- */}
 
-      {/* --- Scroll Down Indicator (remains static) --- */}
-      <div className="my-8 text-center">
-        <svg
-          className="inline-block w-6 h-6 text-gray-400 animate-bounce"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
-        <p className="text-sm text-gray-400 mt-1">Scroll down for more</p>
-      </div>
-      {/* --- End Scroll Down Indicator --- */}
-
       {/* --- Render the Client Component for Filtering and Listing --- */}
       {/* Pass all projects and the initial search term */}
       <ProjectListClient projects={projectsData} initialSearchTerm={initialSearchTerm} />
+
+      {/* Scroll indicator removed from here, now handled within ProjectListClient */}
 
     </div>
   );
