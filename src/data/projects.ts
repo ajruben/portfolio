@@ -30,7 +30,7 @@ export const projectsData: Project[] = [
         title: "London Crime Data Project", 
         description: "Using data visualisations and spatial models to explain crime occurences in London.",
         technologies: ["Python", "R", "GeoPandas", "cuDf", "datashader", "dask"],
-        imageUrl: "/images_project2/crime_vertices_1920_1080.png", 
+        imageUrl: "/images_project2/crime_distribution_blue_yellow_aggr_uhard.png", 
         // liveUrl: "https://your-deployed-portfolio-url.com", 
         repoUrl: "https://github.com/your-username/your-portfolio-repo", 
     },

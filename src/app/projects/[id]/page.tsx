@@ -3,13 +3,8 @@ import { projectsData, Project } from '@/data/projects';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-
-// --- Imports for MDX ---
-import fs from 'fs';
-import path from 'path';
-import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote } from 'next-mdx-remote/rsc'; // Import RSC version for server components
 import ProjectImageCarousel from '@/components/ProjectImageCarousel'; // Import the carousel component
+import dynamic from 'next/dynamic'; // Import for dynamic loading
 
 // Define props for the page component
 interface ProjectDetailPageProps {
@@ -32,38 +27,21 @@ export async function generateMetadata({ params }: ProjectDetailPageProps): Prom
 export async function generateStaticParams() {
   const paths = projectsData.map((project) => ({ id: project.id.toString() }));
   // console.log('[generateStaticParams] Generated:', paths); // Optional log
-  return paths;
+   return paths;
 }
 
-// --- Helper function to load and compile MDX ---
-async function getMdxSource(projectId: string) {
-  const mdxFilePath = path.join(process.cwd(), 'src', 'project-content', `${projectId}.mdx`);
-  console.log(`[getMdxSource] Checking for MDX file at: ${mdxFilePath}`); // Log file path
-
-  try {
-    if (fs.existsSync(mdxFilePath)) {
-      console.log(`[getMdxSource] Found MDX file for ID ${projectId}. Reading...`);
-      const fileContents = fs.readFileSync(mdxFilePath, 'utf8');
-      console.log(`[getMdxSource] Read ${fileContents.length} characters. Serializing...`);
-      // Compile the MDX string
-      const source = await serialize(fileContents, {
-        // parseFrontmatter: true, // Uncomment if you add YAML frontmatter to MDX
-      });
-      console.log(`[getMdxSource] Serialization successful for ID ${projectId}.`);
-      return source;
-    } else {
-       console.log(`[getMdxSource] No MDX file found for ID ${projectId}.`);
-       return null;
-    }
-  } catch (error) {
-    console.error(`[getMdxSource] Error processing MDX for ID ${projectId}:`, error);
-    return null; // Return null on error
-  }
-}
-
+// --- Dynamically load project content components ---
+// We'll create these components in the next step
+const ProjectContentComponents: { [key: string]: React.ComponentType<any> } = {
+  '1': dynamic(() => import('@/project-content/components/Project1Content').catch(() => () => <div>Error loading content for project 1.</div>)),
+  '2': dynamic(() => import('@/project-content/components/Project2Content').catch(() => () => <div>Error loading content for project 2.</div>)),
+  // Add entries for other project IDs as you create their components
+  // '3': dynamic(() => import('@/project-content/components/Project3Content')),
+};
 
 // --- The Page Component - Marked as async ---
-export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+// No longer needs to be async unless fetching data directly here
+export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   console.log("[ProjectDetailPage] Received params:", params); // Log received params
   const projectId = params.id; // Access param ID
 
@@ -76,8 +54,8 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
      notFound();
   }
 
-  // Load and compile the MDX content using the helper function
-  const mdxSource = await getMdxSource(projectId);
+  // Get the specific content component for this project ID
+  const ProjectSpecificContent = ProjectContentComponents[projectId];
 
   // --- Render the project details ---
   return (
@@ -102,16 +80,17 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           </div>
         )}
 
-        {/* Render MDX or Fallback Description */}
+        {/* Render the dynamically loaded project-specific component */}
         <div className="prose prose-invert prose-lg max-w-none mb-8 text-gray-300">
           <h2 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-gray-600 pb-2">About this Project</h2>
-          {mdxSource ? (
-             // Use the RSC version of MDXRemote here
-             <MDXRemote source={mdxSource?.compiledSource} />
+          {ProjectSpecificContent ? (
+            <ProjectSpecificContent project={project} /> // Pass project data if needed
           ) : (
-             // Fallback to the short description
-             <p>{project.description}</p>
-             // Maybe add other details from projects.ts here if needed as fallback
+            // Fallback if no specific component is found for the ID
+            <div>
+              <p>{project.description}</p>
+              <p className="mt-4 italic text-gray-500">Detailed content component not found for this project.</p>
+            </div>
           )}
         </div>
 

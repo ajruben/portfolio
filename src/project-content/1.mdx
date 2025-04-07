@@ -1,4 +1,4 @@
-{/* src/project-content/your-qgis-plugin-id.mdx */}
+<!-- src/project-content/1.mdx -->
 
 ## Project Overview: QGIS Plugin - [Plugin Name]
 
@@ -6,8 +6,6 @@ This project involved the development of a custom plugin for QGIS (Quantum GIS),
 
 It addresses the need for [Describe the problem or inefficiency this plugin solves] which is often encountered by [Mention the target users - e.g., GIS analysts, environmental scientists, urban planners]. By providing an intuitive user interface and automating complex steps, the plugin aims to save users significant time and reduce potential errors.
 
-![Main Plugin Interface](path/to/screenshot-main-dialog.png)
-*Caption: The main dialog window of the [Plugin Name] plugin.*
 
 ## Core Features
 
@@ -48,7 +46,7 @@ from qgis.core import QgsVectorLayer, QgsProject, QgsFeatureIterator
 def process_selected_features(layer_name):
     layers = QgsProject.instance().mapLayersByName(layer_name)
     if not layers:
-        print(f"Layer '{layer_name}' not found!")
+        print(f"Layer '{layer_name}' not found.") # Removed the '!'
         return
 
     layer = layers[0]
