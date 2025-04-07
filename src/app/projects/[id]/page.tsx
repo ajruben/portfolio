@@ -9,6 +9,7 @@ import fs from 'fs';
 import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote/rsc'; // Import RSC version for server components
+import ProjectImageCarousel from '@/components/ProjectImageCarousel'; // Import the carousel component
 
 // Define props for the page component
 interface ProjectDetailPageProps {
@@ -93,6 +94,13 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           {/* ... image rendering ... */}
           {project.imageUrl ? ( <img src={project.imageUrl} alt={`${project.title}`} className="w-full h-full object-cover"/> ) : ( <div className="w-full h-full flex items-center justify-center"><span className="text-gray-400 italic">No Image Available</span></div> )}
         </div>
+
+        {/* Image Carousel (if detailImages exist) */}
+        {project.detailImages && project.detailImages.length > 0 && (
+          <div className="mb-8">
+            <ProjectImageCarousel images={project.detailImages} projectTitle={project.title} />
+          </div>
+        )}
 
         {/* Render MDX or Fallback Description */}
         <div className="prose prose-invert prose-lg max-w-none mb-8 text-gray-300">

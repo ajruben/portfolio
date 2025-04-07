@@ -13,12 +13,12 @@ export interface Project {
 export const projectsData: Project[] = [
     {
         id: 1,
-        title: "Development of Qgis Plugin - ", // Example: Your portfolio itself!
+        title: "Development of Qgis Plugin - ", 
         description: "tooling and data management for accoustic consulting",
         technologies: ["Python", "Qgis", "GDAL", "Geopandas", "SQL", "GPKG (sqlite)", "shapely"],
         imageUrl: "/images_project1/QdB.jpg", 
-        // liveUrl: "https://your-deployed-portfolio-url.com", // Add later
-        repoUrl: "https://github.com/your-username/your-portfolio-repo", // Use your actual repo link
+        // liveUrl: "https://your-deployed-portfolio-url.com", 
+        repoUrl: "https://github.com/your-username/your-portfolio-repo", 
         detailImages: [
             "/images_project1/QdB.jpg",
             "/images/portfolio/animation-demo.gif",
@@ -27,21 +27,21 @@ export const projectsData: Project[] = [
     },
     {
         id: 2,
-        title: "London Crime Data Project", // Example: Your portfolio itself!
+        title: "London Crime Data Project", 
         description: "Using data visualisations and spatial models to explain crime occurences in London.",
         technologies: ["Python", "R", "GeoPandas", "cuDf", "datashader", "dask"],
-        imageUrl: "/images_project2/crime_vertices_1920_1080.png", // Add a screenshot later!
-        // liveUrl: "https://your-deployed-portfolio-url.com", // Add later
-        repoUrl: "https://github.com/your-username/your-portfolio-repo", // Use your actual repo link
+        imageUrl: "/images_project2/crime_vertices_1920_1080.png", 
+        // liveUrl: "https://your-deployed-portfolio-url.com", 
+        repoUrl: "https://github.com/your-username/your-portfolio-repo", 
     },
     {
         id: 3,
-        title: "Interactive Portfolio Website", // Example: Your portfolio itself!
+        title: "Interactive Portfolio Website", 
         description: "A dynamic personal portfolio built with Next.js, TypeScript, and Tailwind CSS, featuring scroll-triggered animations using Framer Motion. Deployed on Vercel.",
         technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
-        // imageUrl: "/images/portfolio-screenshot.jpg", // Add a screenshot later!
-        // liveUrl: "https://your-deployed-portfolio-url.com", // Add later
-        repoUrl: "https://github.com/your-username/your-portfolio-repo", // Use your actual repo link
+        // imageUrl: "/images/portfolio-screenshot.jpg", 
+        // liveUrl: "https://your-deployed-portfolio-url.com", 
+        repoUrl: "https://github.com/your-username/your-portfolio-repo", 
     },
     {
         id: 4,
@@ -79,5 +79,4 @@ export const projectsData: Project[] = [
         // liveUrl: null, // No live demo for backend usually
         repoUrl: "https://github.com/your-username/ecommerce-backend-repo",
     }
-    // Add more of your actual projects...
 ];
