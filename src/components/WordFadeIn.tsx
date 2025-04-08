@@ -14,7 +14,7 @@ interface WordFadeInProps {
 const WordFadeIn: React.FC<WordFadeInProps> = ({
   text,
   wordDelay = 80,
-  lineDelay = 400, // Keep prop even if not fully used
+  lineDelay: _lineDelay = 400, // Prefix with underscore to mark as unused
   animationDuration = 300,
   startDelay = 0, // Default start delay to 0
   className = '',
