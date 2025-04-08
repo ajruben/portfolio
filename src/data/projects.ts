@@ -21,8 +21,8 @@ export const projectsData: Project[] = [
         repoUrl: "https://github.com/your-username/your-portfolio-repo", 
         detailImages: [
             "/images_project1/QdB.jpg",
-            "/images/portfolio/animation-demo.gif",
-            "/images/portfolio/code-snippet.png",
+            "/images_project1/hoogte_ipol1.png",
+            "/images_project1/snippet.png",
         ],
     },
     {
