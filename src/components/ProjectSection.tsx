@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion'; // Import scroll hooks
 import { Project } from '@/data/projects';
+import Image from 'next/image'; // Import Image
 
 interface ProjectSectionProps {
   project: Project;
@@ -126,11 +127,16 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
 
         {/* --- Column 2: Visual --- */}
         <div
-          // Dark Theme Placeholder Styling
-          className="mt-8 md:mt-0 flex items-center justify-center aspect-video bg-gradient-to-br from-gray-700 to-gray-600 rounded-lg shadow-lg overflow-hidden"
+          // Dark Theme Placeholder Styling - Added relative positioning
+          className="relative mt-8 md:mt-0 flex items-center justify-center aspect-video bg-gradient-to-br from-gray-700 to-gray-600 rounded-lg shadow-lg overflow-hidden"
         >
           {project.imageUrl ? (
-            <img src={project.imageUrl} alt={`${project.title} screenshot`} className="w-full h-full object-cover" />
+            <Image
+              src={project.imageUrl}
+              alt={`${project.title} screenshot`}
+              fill={true} // Use fill to cover the container
+              style={{ objectFit: 'cover' }} // Maintain aspect ratio and cover
+            />
           ) : (
               // Dark Theme Placeholder Text
             <span className="text-gray-400">Project Visual Placeholder</span>

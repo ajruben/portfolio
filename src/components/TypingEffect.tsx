@@ -1,6 +1,6 @@
 'use client'; // This component needs client-side hooks
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react'; // Import useMemo
 
 interface TypingEffectProps {
   text: string;
@@ -11,10 +11,12 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ text, speed = 150 }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Split text into sentences or meaningful chunks.
-  // This regex tries to split by sentence-ending punctuation followed by space or end of string.
-  // It keeps the punctuation as part of the sentence.
-  const sentences = text.match(/[^.!?]+[.!?]+(\s|$)/g) || [text];
+  // Split text into sentences or meaningful chunks using useMemo
+  const sentences = useMemo(() => {
+    // This regex tries to split by sentence-ending punctuation followed by space or end of string.
+    // It keeps the punctuation as part of the sentence.
+    return text.match(/[^.!?]+[.!?]+(\s|$)/g) || [text];
+  }, [text]); // Dependency: only recalculate when text changes
 
   useEffect(() => {
     if (currentIndex < sentences.length) {

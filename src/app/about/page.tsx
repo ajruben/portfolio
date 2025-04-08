@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import FadeInStagger from '@/components/FadeInStagger';
 import WordFadeIn from '@/components/WordFadeIn';
 import JourneyTimeline from '@/components/JourneyTimeline';
-import KatexRenderer from '@/components/KatexRenderer'; // Import KatexRenderer
 import { motion } from 'framer-motion';
 
 interface JourneyPhase {
