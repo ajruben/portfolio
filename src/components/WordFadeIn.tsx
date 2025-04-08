@@ -14,7 +14,8 @@ interface WordFadeInProps {
 const WordFadeIn: React.FC<WordFadeInProps> = ({
   text,
   wordDelay = 80,
-  lineDelay: _lineDelay = 400, // Prefix with underscore to mark as unused
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  lineDelay = 400, // Keep prop even if not fully used, disable lint rule for this line
   animationDuration = 300,
   startDelay = 0, // Default start delay to 0
   className = '',
