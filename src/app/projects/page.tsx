@@ -10,12 +10,10 @@ export const metadata: Metadata = {
   description: "A showcase of projects I've built, demonstrating modern web technologies.",
 };
 
-// Page component receives searchParams prop
-export default function ProjectsPage({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+// Page component receives searchParams prop - Use 'any' workaround for props type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function ProjectsPage(props: any) {
+  const { searchParams } = props; // Destructure searchParams
   // Extract initial search term from server-side props
   const initialSearchTerm = typeof searchParams?.search === 'string' ? searchParams.search : '';
 

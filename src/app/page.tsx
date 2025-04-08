@@ -1,4 +1,3 @@
-
 'use client'; // Needs client hooks for state and router
 
 import React, { useState } from 'react';
@@ -64,7 +63,7 @@ export default function Home() {
           <div className="w-full max-w-2xl"> {/* Keep width constraints */}
             <h1 className="text-4xl font-bold mb-4 text-center">Welcome to My Portfolio</h1>
             <p className="text-lg mb-4 text-center">
-              Hi, I'm Ruben.
+              Hi, I&apos;m Ruben.
             </p>
             {/* Link the paragraph and add a subtle icon */}
             {/* Increase margin below intro link */}
