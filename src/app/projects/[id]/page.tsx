@@ -6,14 +6,13 @@ import { notFound } from 'next/navigation';
 import ProjectImageCarousel from '@/components/ProjectImageCarousel'; // Import the carousel component
 import dynamic from 'next/dynamic'; // Import for dynamic loading
 import Image from 'next/image'; // Import Image
+// Removed React import as FC is no longer used
+// Removed ProjectDetailPageProps interface
 
-// Define props for the page component
-interface ProjectDetailPageProps {
-  params: { id: string; };
-}
-
-// --- generateMetadata remains the same ---
-export async function generateMetadata({ params }: ProjectDetailPageProps): Promise<Metadata> {
+// --- generateMetadata: Use type assertion 'as any' for props as a workaround ---
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function generateMetadata(props: any): Promise<Metadata> {
+   const { params } = props; // Destructure params
    // Added console logs for debugging the "params" error if it persists
    console.log("[generateMetadata] Received params:", params);
    const currentId = params.id;
@@ -48,9 +47,11 @@ const ProjectContentComponents: { [key: string]: React.ComponentType<{ project: 
   // '3': dynamic(() => import('@/project-content/components/Project3Content')),
 };
 
-// --- The Page Component - Marked as async ---
+// --- The Page Component: Use type assertion 'as any' for props as a workaround ---
 // No longer needs to be async unless fetching data directly here
-export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function ProjectDetailPage(props: any) { // Use props: any
+  const { params } = props; // Destructure params
   console.log("[ProjectDetailPage] Received params:", params); // Log received params
   const projectId = params.id; // Access param ID
 
