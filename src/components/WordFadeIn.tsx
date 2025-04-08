@@ -5,38 +5,53 @@ import React, { useState, useEffect, useMemo } from 'react';
 interface WordFadeInProps {
   text: string;
   wordDelay?: number; // Delay between each word fading in (ms)
-  lineDelay?: number; // Additional delay at the end of each line (ms)
+  lineDelay?: number; // Additional delay at the end of each line (ms) - Note: Not fully implemented in current logic
   animationDuration?: number; // Duration of the fade-in animation for each word (ms)
+  startDelay?: number; // Delay before the *first* word starts animating (ms)
   className?: string; // Allow passing custom classes for styling
 }
 
 const WordFadeIn: React.FC<WordFadeInProps> = ({
   text,
   wordDelay = 80,
-  lineDelay = 400,
+  lineDelay = 400, // Keep prop even if not fully used
   animationDuration = 300,
+  startDelay = 0, // Default start delay to 0
   className = '',
 }) => {
   const [visibleCount, setVisibleCount] = useState(0);
+  const [isStarted, setIsStarted] = useState(false); // Track if the start delay has passed
 
   // Split text into lines, then words, preserving structure
   const lines = useMemo(() => text.split('<br />').map(line => line.trim().split(/\s+/).filter(word => word)), [text]);
   const totalWords = useMemo(() => lines.reduce((count, line) => count + line.length, 0), [lines]);
 
+  // Effect to handle the initial start delay
   useEffect(() => {
-    if (visibleCount < totalWords) {
-      const timer = setTimeout(() => {
-        setVisibleCount(prev => prev + 1);
-      }, wordDelay); // Basic delay between words
-
-      // Note: Implementing precise line delay within this simple word counter is complex.
-      // This version focuses on word-by-word delay. A more robust solution
-      // might calculate delays based on word index across all lines.
-      // For now, the lineDelay prop isn't directly used in this simplified timer.
-
-      return () => clearTimeout(timer);
+    if (startDelay > 0) {
+      const startTimer = setTimeout(() => {
+        setIsStarted(true);
+      }, startDelay);
+      return () => clearTimeout(startTimer);
+    } else {
+      setIsStarted(true); // Start immediately if no delay
     }
-  }, [visibleCount, totalWords, wordDelay]);
+  }, [startDelay]);
+
+  // Effect to handle word-by-word animation *after* the start delay
+  useEffect(() => {
+    // Only run if the start delay has passed and there are words left to show
+    if (isStarted && visibleCount < totalWords) {
+      const wordTimer = setTimeout(() => {
+        setVisibleCount(prev => prev + 1);
+      }, wordDelay);
+
+      // Note: lineDelay logic remains complex with this structure.
+
+      return () => clearTimeout(wordTimer);
+    }
+  }, [isStarted, visibleCount, totalWords, wordDelay]);
+
 
   let wordCounter = 0;
 
