@@ -34,7 +34,6 @@ const Project1Content: React.FC<ProjectContentProps> = ({ project }) => {
 
 
   return (
-    // Assuming a dark theme, use lighter text colors
     <div className="space-y-8 text-gray-300">
       <h3 className="text-3xl font-bold border-b border-gray-600 pb-3 text-gray-100">
         QGIS Plugin for Acoustic Modeling & Analysis (dBvision)
@@ -67,8 +66,8 @@ const Project1Content: React.FC<ProjectContentProps> = ({ project }) => {
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
           <h5 className="text-xl font-semibold mb-3 text-cyan-400">Geospatial Data Engineering & ETL Pipeline</h5>
           <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Designed and implemented a specialized GeoPackage-based data model (`dBvisionDM`) optimized for acoustic features, utilizing `sqlite3` and `osgeo.ogr` (GDAL).</li>
-            <li>Engineered robust ETL (Extract, Transform, Load) processes within the `dBvisionPackage` to ingest data from diverse sources (Shapefiles, GML, Geomilieu, CVGG, WinHavik).</li>
+            <li>Designed and implemented a specialized GeoPackage-based data model (&quot;dBvisionDM&quot;) optimized for acoustic features, utilizing &quot;sqlite3&quot; and &quot;osgeo.ogr&quot; (GDAL).</li>
+            <li>Engineered robust ETL (Extract, Transform, Load) processes within the &quot;dBvisionPackage&quot; to ingest data from diverse sources (Shapefiles, GML, Geomilieu, CVGG, WinHavik).</li>
             <li>Developed complex data transformations using JSON-defined profiles for schema mapping, coded value translation, and unit conversions between external standards and the internal model.</li>
             <li>Ensured data integrity by programmatically creating and enforcing the data model structure (tables, fields, data types, constraints, spatial reference systems - EPSG:28992) within the GeoPackage.</li>
             <li>Focused on efficient data handling within the pipeline, balancing processing speed with data integrity, considering optimizations for large datasets (e.g., exploring efficient libraries like PyArrow for future scalability).</li>
@@ -81,9 +80,9 @@ const Project1Content: React.FC<ProjectContentProps> = ({ project }) => {
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
            <h5 className="text-xl font-semibold mb-3 text-cyan-400">Advanced Geospatial Processing & Analysis</h5>
            <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Developed a custom QGIS geometry splitting tool (`Intersector`) using PyQt, `shapely`, and direct GDAL/SQL. This tool addressed native QGIS limitations by preserving and accurately interpolating Z (height) and M (measure) values during the splitting of LineStringZM/PolygonZM features, crucial for 3D/4D acoustic data fidelity.</li>
-            <li>Implemented height interpolation algorithms (`dBvisionPackage.hoogteInterpolatie`) using spatial analysis techniques to enrich 2D datasets with elevation (Z) values from reference height maps.</li>
-            <li>Integrated data validation checks (`CheckDialog`) to verify model consistency and adherence to standards before calculation, ensuring reliable analysis inputs.</li>
+            <li>Developed a custom QGIS geometry splitting tool (&quot;Intersector&quot;) using PyQt, &quot;shapely&quot;, and direct GDAL/SQL. This tool addressed native QGIS limitations by preserving and accurately interpolating Z (height) and M (measure) values during the splitting of LineStringZM/PolygonZM features, crucial for 3D/4D acoustic data fidelity.</li>
+            <li>Implemented height interpolation algorithms (&quot;dBvisionPackage.hoogteInterpolatie&quot;) using spatial analysis techniques to enrich 2D datasets with elevation (Z) values from reference height maps.</li>
+            <li>Integrated data validation checks (&quot;CheckDialog&quot;) to verify model consistency and adherence to standards before calculation, ensuring reliable analysis inputs.</li>
           </ul>
            {/* Splitting Tool Carousel */}
            <h6 className="text-lg font-medium mb-2 text-gray-400">Custom Geometry Splitting Tool (Z/M Preserving):</h6>
