@@ -51,7 +51,8 @@ const FadeInStagger: React.FC<FadeInStaggerProps> = ({
         }
 
         // Clone the element to add animation styles
-        const element = child as React.ReactElement<any>; // Assert the type
+        // Use a more specific type that includes style, allowing other props implicitly
+        const element = child as React.ReactElement<{ style?: React.CSSProperties }>;
         const currentProps = element.props || {}; // Ensure props is an object
         const currentStyle = currentProps.style || {}; // Ensure style is an object
 

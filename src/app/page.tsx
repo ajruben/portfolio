@@ -1,7 +1,6 @@
 
 'use client'; // Needs client hooks for state and router
 
-import type { Metadata } from "next";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 // import FadeInStagger from '@/components/FadeInStagger'; // Remove FadeInStagger

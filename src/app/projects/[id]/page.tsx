@@ -1,10 +1,11 @@
 // src/app/projects/[id]/page.tsx
-import { projectsData, Project } from '@/data/projects';
+import { projectsData, Project } from '@/data/projects'; // Import Project type
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ProjectImageCarousel from '@/components/ProjectImageCarousel'; // Import the carousel component
 import dynamic from 'next/dynamic'; // Import for dynamic loading
+import Image from 'next/image'; // Import Image
 
 // Define props for the page component
 interface ProjectDetailPageProps {
@@ -32,9 +33,17 @@ export async function generateStaticParams() {
 
 // --- Dynamically load project content components ---
 // We'll create these components in the next step
-const ProjectContentComponents: { [key: string]: React.ComponentType<any> } = {
-  '1': dynamic(() => import('@/project-content/components/Project1Content').catch(() => () => <div>Error loading content for project 1.</div>)),
-  '2': dynamic(() => import('@/project-content/components/Project2Content').catch(() => () => <div>Error loading content for project 2.</div>)),
+const ProjectContentComponents: { [key: string]: React.ComponentType<{ project: Project }> } = { // Use Project type
+  '1': dynamic(() => import('@/project-content/components/Project1Content').catch(() => {
+    const ErrorFallback = () => <div>Error loading content for project 1.</div>;
+    ErrorFallback.displayName = 'Project1ErrorFallback';
+    return ErrorFallback;
+  })),
+  '2': dynamic(() => import('@/project-content/components/Project2Content').catch(() => {
+    const ErrorFallback = () => <div>Error loading content for project 2.</div>;
+    ErrorFallback.displayName = 'Project2ErrorFallback';
+    return ErrorFallback;
+  })),
   // Add entries for other project IDs as you create their components
   // '3': dynamic(() => import('@/project-content/components/Project3Content')),
 };
@@ -67,10 +76,20 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 
       {/* Main Content Area */}
       <div className="max-w-4xl mx-auto bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg">
-        {/* Project Image */}
-        <div className="mb-8 aspect-video bg-gradient-to-br from-gray-700 to-gray-600 rounded-lg shadow-inner overflow-hidden">
-          {/* ... image rendering ... */}
-          {project.imageUrl ? ( <img src={project.imageUrl} alt={`${project.title}`} className="w-full h-full object-cover"/> ) : ( <div className="w-full h-full flex items-center justify-center"><span className="text-gray-400 italic">No Image Available</span></div> )}
+        {/* Project Image - Added relative positioning */}
+        <div className="relative mb-8 aspect-video bg-gradient-to-br from-gray-700 to-gray-600 rounded-lg shadow-inner overflow-hidden">
+          {/* Use Next/Image */}
+          {project.imageUrl ? (
+            <Image
+              src={project.imageUrl}
+              alt={`${project.title}`}
+              fill={true} // Use fill to cover the container
+              style={{ objectFit: 'cover' }} // Maintain aspect ratio and cover
+              priority // Prioritize loading if it's LCP
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center"><span className="text-gray-400 italic">No Image Available</span></div>
+          )}
         </div>
 
         {/* Image Carousel (if detailImages exist) */}

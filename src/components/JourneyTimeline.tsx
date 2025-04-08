@@ -83,7 +83,7 @@ const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
         observerRef.current = null;
       }
     };
-  }, [sections]);
+  }, [sections, setActiveSection]); // Added setActiveSection to dependencies
 
   // ---- Mount Fade-in Effect ----
   useEffect(() => {
