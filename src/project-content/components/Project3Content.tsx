@@ -2,13 +2,19 @@
 
 import React, { useState } from 'react'; // Import useState
 import Image from 'next/image'; // Import the Next.js Image component
-import { Project } from '@/data/projects'; // Assuming Project type is exported
+import { Project } from '@/data/projects'; // Re-add Project type import
 
+// Re-add interface
 interface ProjectContentProps {
   project: Project; // Receive project data as a prop
 }
 
+// Re-add props to component signature and FC type
 const Project3Content: React.FC<ProjectContentProps> = ({ project }) => {
+  // Add eslint-disable comment for the unused 'project' prop to avoid new linting errors
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _unusedProject = project; // Assign to a variable prefixed with _ to indicate it's intentionally unused
+
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null); // State for selected image index
 
   const imageNames = [

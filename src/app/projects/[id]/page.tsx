@@ -32,6 +32,7 @@ export async function generateStaticParams() {
 
 // --- Dynamically load project content components ---
 // We'll create these components in the next step
+// Reverted: project prop is required by the type definition
 const ProjectContentComponents: { [key: string]: React.ComponentType<{ project: Project }> } = { // Use Project type
   '1': dynamic(() => import('@/project-content/components/Project1Content').catch(() => {
     const ErrorFallback = () => <div>Error loading content for project 1.</div>;

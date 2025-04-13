@@ -1,4 +1,6 @@
-import React from 'react';
+"use client"; // Mark as Client Component
+
+import React, { useState } from 'react'; // Import useState
 import Image from 'next/image';
 import { Project } from '@/data/projects'; // Assuming Project type is exported
 import ProjectImageCarousel from '@/components/ProjectImageCarousel'; // Import the carousel component
@@ -7,7 +9,17 @@ interface ProjectContentProps {
   project: Project; // Receive project data as a prop
 }
 
+// Revert back to using a modal state
 const Project1Content: React.FC<ProjectContentProps> = ({ project }) => {
+  const [showModal, setShowModal] = useState(false); // State for modal visibility
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   // Define image sets for carousels - now arrays of strings
   const etlImageSrcs = [
@@ -43,21 +55,53 @@ const Project1Content: React.FC<ProjectContentProps> = ({ project }) => {
         Developed and maintained the "QdB" QGIS plugin and an associated Python package (`dBvisionPackage`) for dBvision. This project established a comprehensive geospatial data pipeline tailored for acoustic consultants, streamlining their workflow for noise modeling, analysis, and compliance with Dutch environmental regulations (SWUNG/WMB) using the RIVM 'Rekenhart Geluid' calculation engine.
       </p>
 
+      {/* Container for the clickable image */}
       <div className="my-4 flex justify-center">
-        <figure>
+        {/* Figure handles the click to open modal */}
+        <figure className="relative cursor-pointer" onClick={openModal}>
           <Image
             src="/images_project1/QdB.jpg"
             alt="QdB Plugin Interface in QGIS"
             width={700}
             height={450}
-            className="rounded-md shadow-lg"
+            className="rounded-md shadow-lg max-w-full h-auto" // Normal state styles
+            priority // Prioritize loading this image
           />
           <figcaption className="text-center text-sm text-gray-600 mt-2">
-            The QdB plugin dock widget within QGIS, organizing the workflow.
+            The QdB plugin dock widget within QGIS, organizing the workflow. (Click to enlarge)
           </figcaption>
         </figure>
       </div>
 
+      {/* Modal for enlarged image */}
+      {showModal && (
+        <div
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 p-4 cursor-zoom-out transition-opacity duration-300 ease-in-out"
+          onClick={closeModal} // Click overlay to close
+        >
+          {/* Close Button */}
+           <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-[1000] text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-opacity"
+              aria-label="Close image viewer"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          {/* Image inside the overlay, prevent click propagation */}
+          <Image
+            src="/images_project1/QdB.jpg"
+            alt="QdB Plugin Interface in QGIS - Enlarged"
+            width={1920} // Larger base for quality
+            height={1080}
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
+            className="rounded-md shadow-lg object-contain max-w-[90vw] max-h-[90vh] w-auto h-auto" // Sizing and contain for enlarged image
+          />
+        </div>
+      )}
+
+      {/* Remove conditional margin from heading */}
       <h4 className="text-2xl font-semibold mt-10 mb-4 text-gray-100">Key Contributions & Technical Features:</h4>
 
       {/* Use styled containers for sections */}
@@ -126,6 +170,7 @@ const Project1Content: React.FC<ProjectContentProps> = ({ project }) => {
         This project highlights significant data engineering challenges within the geospatial domain, including designing complex ETL pipelines, ensuring data integrity across systems, performing advanced spatial analysis, balancing efficiency and scalability, and developing custom tooling to overcome platform limitations for 3D/4D data processing.
       </p>
 
+      {/* Removed the modal JSX */}
     </div>
   );
 };
