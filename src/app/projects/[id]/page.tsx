@@ -44,7 +44,11 @@ const ProjectContentComponents: { [key: string]: React.ComponentType<{ project: 
     return ErrorFallback;
   })),
   // Add entries for other project IDs as you create their components
-  // '3': dynamic(() => import('@/project-content/components/Project3Content')),
+  '3': dynamic(() => import('@/project-content/components/Project3Content').catch(() => {
+    const ErrorFallback = () => <div>Error loading content for project 3.</div>;
+    ErrorFallback.displayName = 'Project3ErrorFallback';
+    return ErrorFallback;
+  })),
 };
 
 // --- The Page Component: Use type assertion 'as any' for props as a workaround ---
