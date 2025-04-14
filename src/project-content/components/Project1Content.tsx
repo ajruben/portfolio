@@ -2,11 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import { Project } from '@/data/projects'; // Assuming Project type is exported
 import ProjectImageCarousel from '@/components/ProjectImageCarousel'; // Import the carousel component
+import ProjectImageCarousel from '@/components/ProjectImageCarousel'; // Import the carousel component
 
 interface ProjectContentProps {
   project: Project; // Receive project data as a prop
 }
 
+// Revert back to using a modal state
 const Project1Content: React.FC<ProjectContentProps> = ({ project }) => {
 
   // Define image sets for carousels - now arrays of strings

@@ -1,5 +1,6 @@
 // src/app/projects/[id]/page.tsx
 import { projectsData, Project } from '@/data/projects'; // Import Project type
+import { projectsData, Project } from '@/data/projects'; // Import Project type
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -8,7 +9,14 @@ import dynamic from 'next/dynamic'; // Import for dynamic loading
 import Image from 'next/image'; // Import Image
 // Removed React import as FC is no longer used
 // Removed ProjectDetailPageProps interface
+import Image from 'next/image'; // Import Image
+// Removed React import as FC is no longer used
+// Removed ProjectDetailPageProps interface
 
+// --- generateMetadata: Use type assertion 'as any' for props as a workaround ---
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function generateMetadata(props: any): Promise<Metadata> {
+   const { params } = props; // Destructure params
 // --- generateMetadata: Use type assertion 'as any' for props as a workaround ---
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function generateMetadata(props: any): Promise<Metadata> {
@@ -44,11 +52,19 @@ const ProjectContentComponents: { [key: string]: React.ComponentType<{ project: 
     return ErrorFallback;
   })),
   // Add entries for other project IDs as you create their components
-  // '3': dynamic(() => import('@/project-content/components/Project3Content')),
+  '3': dynamic(() => import('@/project-content/components/Project3Content').catch(() => {
+    const ErrorFallback = () => <div>Error loading content for project 3.</div>;
+    ErrorFallback.displayName = 'Project3ErrorFallback';
+    return ErrorFallback;
+  })),
 };
 
 // --- The Page Component: Use type assertion 'as any' for props as a workaround ---
+// --- The Page Component: Use type assertion 'as any' for props as a workaround ---
 // No longer needs to be async unless fetching data directly here
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function ProjectDetailPage(props: any) { // Use props: any
+  const { params } = props; // Destructure params
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ProjectDetailPage(props: any) { // Use props: any
   const { params } = props; // Destructure params
@@ -77,6 +93,20 @@ export default function ProjectDetailPage(props: any) { // Use props: any
 
       {/* Main Content Area */}
       <div className="max-w-4xl mx-auto bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg">
+        {/* Project Image - Added relative positioning */}
+        <div className="relative mb-8 aspect-video bg-gradient-to-br from-gray-700 to-gray-600 rounded-lg shadow-inner overflow-hidden">
+          {/* Use Next/Image */}
+          {project.imageUrl ? (
+            <Image
+              src={project.imageUrl}
+              alt={`${project.title}`}
+              fill={true} // Use fill to cover the container
+              style={{ objectFit: 'cover' }} // Maintain aspect ratio and cover
+              priority // Prioritize loading if it's LCP
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center"><span className="text-gray-400 italic">No Image Available</span></div>
+          )}
         {/* Project Image - Added relative positioning */}
         <div className="relative mb-8 aspect-video bg-gradient-to-br from-gray-700 to-gray-600 rounded-lg shadow-inner overflow-hidden">
           {/* Use Next/Image */}
