@@ -12,8 +12,14 @@ const inter = Inter({ subsets: ["latin"] });
 // generate metadata for the page
 // This metadata will be used for SEO and social sharing
 export const metadata: Metadata = {
-  title: "Ruben Swarts - Portfolio", 
-  description: "Showcasing my projects and interests", 
+  title: "Ruben Swarts - Portfolio",
+  description: "Showcasing my projects and interests",
+  // Explicitly set the viewport meta tag configuration
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    // maximumScale: 1, // Optionally uncomment to prevent user zooming
+  },
 };
 
 // Root layout component
