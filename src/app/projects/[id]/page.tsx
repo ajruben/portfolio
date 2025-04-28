@@ -1,28 +1,20 @@
 // src/app/projects/[id]/page.tsx
 import { projectsData, Project } from '@/data/projects'; // Import Project type
-import { projectsData, Project } from '@/data/projects'; // Import Project type
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ProjectImageCarousel from '@/components/ProjectImageCarousel'; // Import the carousel component
 import dynamic from 'next/dynamic'; // Import for dynamic loading
 import Image from 'next/image'; // Import Image
-// Removed React import as FC is no longer used
-// Removed ProjectDetailPageProps interface
-import Image from 'next/image'; // Import Image
-// Removed React import as FC is no longer used
-// Removed ProjectDetailPageProps interface
+// Removed duplicate Image import and comments
 
-// --- generateMetadata: Use type assertion 'as any' for props as a workaround ---
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function generateMetadata(props: any): Promise<Metadata> {
-   const { params } = props; // Destructure params
 // --- generateMetadata: Use type assertion 'as any' for props as a workaround ---
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function generateMetadata(props: any): Promise<Metadata> {
    const { params } = props; // Destructure params
    // Added console logs for debugging the "params" error if it persists
    console.log("[generateMetadata] Received params:", params);
+   // Removed duplicate function definition
    const currentId = params.id;
    const project = projectsData.find(p => p.id.toString() === currentId);
    console.log("[generateMetadata] Found project:", project?.title);
@@ -60,16 +52,13 @@ const ProjectContentComponents: { [key: string]: React.ComponentType<{ project: 
 };
 
 // --- The Page Component: Use type assertion 'as any' for props as a workaround ---
-// --- The Page Component: Use type assertion 'as any' for props as a workaround ---
 // No longer needs to be async unless fetching data directly here
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function ProjectDetailPage(props: any) { // Use props: any
-  const { params } = props; // Destructure params
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ProjectDetailPage(props: any) { // Use props: any
   const { params } = props; // Destructure params
   console.log("[ProjectDetailPage] Received params:", params); // Log received params
   const projectId = params.id; // Access param ID
+  // Removed duplicate function signature and params destructuring
 
   // Find project summary data
   const project = projectsData.find(p => p.id.toString() === projectId);
@@ -107,21 +96,8 @@ export default function ProjectDetailPage(props: any) { // Use props: any
           ) : (
             <div className="w-full h-full flex items-center justify-center"><span className="text-gray-400 italic">No Image Available</span></div>
           )}
-        {/* Project Image - Added relative positioning */}
-        <div className="relative mb-8 aspect-video bg-gradient-to-br from-gray-700 to-gray-600 rounded-lg shadow-inner overflow-hidden">
-          {/* Use Next/Image */}
-          {project.imageUrl ? (
-            <Image
-              src={project.imageUrl}
-              alt={`${project.title}`}
-              fill={true} // Use fill to cover the container
-              style={{ objectFit: 'cover' }} // Maintain aspect ratio and cover
-              priority // Prioritize loading if it's LCP
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center"><span className="text-gray-400 italic">No Image Available</span></div>
-          )}
         </div>
+        {/* Removed duplicate image block */}
 
         {/* Image Carousel (if detailImages exist) */}
         {project.detailImages && project.detailImages.length > 0 && (

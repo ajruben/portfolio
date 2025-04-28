@@ -8,8 +8,9 @@ export interface Project {
     liveUrl?: string;  // Optional live demo link
     repoUrl?: string;   // GitHub repository link
     detailImages?: string[]; // Optional array of detail image URLs
+    videoSrc?: string; // Optional video source URL
   }
-  
+
 export const projectsData: Project[] = [
     {
         id: 1,
@@ -42,5 +43,11 @@ export const projectsData: Project[] = [
         imageUrl: "/images_project3/mandelbrot_black_and_yellow_you_know_what_it_is.png", 
         // liveUrl: "https://your-deployed-portfolio-url.com", 
         repoUrl: "https://github.com/ajruben/mandelbrot_vis_cupy.git", 
+    },
+    {
+       id: 4,
+       title: 'Medical Text Simplification',
+       description: "Finetuning encoder-decoder models for simplifying medical texts filled with jargon.",
+       technologies: ["Python", "transformers", "nlp"]
     }
 ];

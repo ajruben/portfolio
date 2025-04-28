@@ -32,7 +32,7 @@ export default function RootLayout({
         {/* Tailwind CSS classes for styling */}
         <div className="flex flex-col min-h-screen"> {/* Flex layout for sticky footer */}
           <Header />
-          <main className="flex-grow container mx-auto px-4 py-8"> {/* Main content area */}
+          <main className="flex-grow container mx-auto px-4 py-8 fullhd:max-w-fullhd 4k:max-w-4k"> {/* Main content area */}
             {children} {/* Page content will be rendered here */}
           </main>
           <Footer />

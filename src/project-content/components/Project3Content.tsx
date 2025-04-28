@@ -65,17 +65,20 @@ const Project3Content: React.FC<ProjectContentProps> = ({ project }) => {
       from a simple, but yet interesting equation. The set is defined as the set of complex numbers c for which function f(z) = z^2 + c remains bounded.
       In this case, visualisations speake louder than words.
       </p>
-      {/* Add the video element */}
-      <div className="my-6"> {/* Add some margin */}
-        <video
-          controls
-          width="100%" // Make it responsive
-          className="rounded-lg shadow-md" // Optional styling
-        >
-          <source src="/images_project3/mandel_brot_zoom1.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+
+      {/* Conditionally render the video element if videoSrc exists */}
+      {project.videoSrc && (
+        <div className="my-6"> {/* Add some margin */}
+          <video
+            controls
+            width="100%" // Make it responsive
+            className="rounded-lg shadow-md" // Optional styling
+          >
+            <source src={project.videoSrc} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
 
       {/* Image Gallery Section */}
       <div className="mt-8">

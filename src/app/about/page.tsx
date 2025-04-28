@@ -4,14 +4,39 @@ import React, { useState } from 'react';
 import FadeInStagger from '@/components/FadeInStagger';
 import WordFadeIn from '@/components/WordFadeIn';
 import JourneyTimeline from '@/components/JourneyTimeline';
+// Removed CodeBlock import
 import { motion } from 'framer-motion';
 
 interface JourneyPhase {
   id: string;
   title: string;
   content: string;
-  sidebarContent?: string;
+  sidebarContent?: string; // Reverted to string only
 }
+
+// Define a slightly more complex pipeline snippet with general comments
+const pipelineCodeComplex = `import pandas as pd<br /><br />
+# Load data (e.g., from CSV)<br />
+# df = pd.read_csv('input_data.csv')<br />
+data = {'category': ['X', 'Y', 'X', 'Y'], 'value': [10, 20, 15, 25]}<br />
+df = pd.DataFrame(data)<br /><br />
+# Transform data (e.g., add calculated column)<br />
+df['value_doubled'] = df['value'] * 2<br /><br />
+# Aggregate data (e.g., group by category)<br />
+summary = df.groupby('category')['value_doubled'].sum()<br /><br />
+# Display summary<br />
+print(summary)`;
+
+// Define a geopandas snippet
+const geopandasCode = `import geopandas as gpd<br /><br />
+# Load a shapefile <br />
+# gdf = gpd.read_file('path/to/your/shapefile.shp', engine='pyogrio', use_arrow=True)<br /><br />
+# Display basic GeoDataFrame info<br />
+# print(gdf.info())<br /><br />
+# Print the Coordinate Reference System (CRS)<br />
+# print(gdf.crs)<br /><br />
+# Plot the geometries (requires matplotlib)<br />
+# gdf.plot()`;
 
 const journeyPhases: JourneyPhase[] = [
   {
@@ -48,12 +73,17 @@ h<sub>ij</sub><sup>TT</sup>(t, z) = h<sub>+</sub>(t - z/c) e<sub>ij</sub><sup>+<
     sidebarContent: `import pandas as pd<br />import numpy as np<br />from sklearn.model_selection import train_test_split<br />from sklearn.ensemble import RandomForestClassifier<br /><br /># Load data<br />df = pd.read_csv('data.csv')<br /><br /># Preprocess...<br />X_train, X_test, y_train, y_test = train_test_split(X, y)<br /><br /># Train model<br />model = RandomForestClassifier(n_estimators=100)<br />model.fit(X_train, y_train)`,
   },
   {
-    id: 'current-job',
+    id: 'Experience',
     title: 'Geo IT Dev',
     content: 'Applying my skills in the Geo IT domain...',
-    // Updated Geo IT content with Python class example
-    sidebarContent: `class GeoPoint:<br />&nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, lat, lon, name=""):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.latitude = lat<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.longitude = lon<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = name<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;def to_geojson(self):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "Point",<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"coordinates": [self.longitude, self.latitude]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /># Example<br />amsterdam = GeoPoint(52.379, 4.900, "Amsterdam")<br />print(amsterdam.to_geojson())`,
+    sidebarContent: geopandasCode, // Use the geopandas code snippet
   },
+  {
+    id: "Current job",
+    title: "Python Data Architect Developer",
+    content: "Creating data pipelines to connect information",
+    sidebarContent: pipelineCodeComplex, // Use the more complex pipeline code
+  }
 ];
 
 export default function AboutPage() {
@@ -96,7 +126,6 @@ The code speaks back.`;
           dark:border-gray-700
           p-0 pr-8
           -translate-x-35
-          // This container is no longer scrolled; it's pinned relative to the viewport
         "
         style={{ height: 'calc(100vh - 4rem)' }} // or something that suits your layout
       >
@@ -127,7 +156,7 @@ The code speaks back.`;
               <h1 className="text-3xl font-bold mb-4">About Me</h1>
               <p className="mb-4">
                 With my background in Physics BSc. and Applied Data Science MSc., coupled
-                with my experience and interest in programming and GIS ...
+                with my industry experience and interest in programming and GIS, I worked on several interesting projects over the years. On this page, you can learn more about my background. 
               </p>
             </div>
 
@@ -178,7 +207,7 @@ The code speaks back.`;
             </div>
 
             {/* Single animation on "Discover my journey" */}
-            <div className = "translate-y-95"/* no second fade in/out; just one animation or none */>
+            <div className = "translate-y-50"/* no second fade in/out; just one animation or none */>
               <p className="text-base font-medium tracking-wide  mb-3">
                 Discover my journey
               </p>
@@ -252,15 +281,19 @@ The code speaks back.`;
 
               {/* Conditionally show sidebar text if active */}
               {phase.sidebarContent && activeSection === phase.id && (
-                <div className="md:w-1/3 md:pl-12 mt-8 translate-x-100 md:mt-0 flex justify-center md:justify-start">
+                <div className="md:w-1/3 md:pl-12 mt-8 md:mt-0 flex justify-center md:justify-start">
                   <div className="text-left w-full">
+                    {/* Always use WordFadeIn as sidebarContent is now always string */}
                     <WordFadeIn
-                      key={phase.id}
+                      key={phase.id} // Use phase.id as key
                       text={phase.sidebarContent}
                       wordDelay={150}
                       lineDelay={1000}
                       animationDuration={1500}
-                      className="font-mono text-x text-gray-500 dark:text-gray-400 whitespace-pre-wrap"
+                      // Apply base styling
+                      className="font-mono text-xs text-gray-500 dark:text-gray-400 whitespace-pre-wrap"
+                      // Conditionally render as HTML only for the physics section
+                      renderAsHTML={phase.id === 'bachelor'}
                     />
                   </div>
                 </div>

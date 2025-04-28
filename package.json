@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/katex": "^0.16.7",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "framer-motion": "^12.6.3",
     "intl": "^1.2.5",
     "katex": "^0.16.21",
@@ -20,13 +21,14 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "react-syntax-highlighter": "^5.8.0",
     "swiper": "^11.2.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
     "@types/katex": "^0.16.7",
+    "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

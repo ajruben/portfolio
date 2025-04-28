@@ -9,6 +9,7 @@ interface WordFadeInProps {
   animationDuration?: number; // Duration of the fade-in animation for each word (ms)
   startDelay?: number; // Delay before the *first* word starts animating (ms)
   className?: string; // Allow passing custom classes for styling
+  renderAsHTML?: boolean; // New prop to control HTML rendering
 }
 
 const WordFadeIn: React.FC<WordFadeInProps> = ({
@@ -19,43 +20,66 @@ const WordFadeIn: React.FC<WordFadeInProps> = ({
   animationDuration = 300,
   startDelay = 0, // Default start delay to 0
   className = '',
+  renderAsHTML = false, // Default to false
 }) => {
-  const [visibleCount, setVisibleCount] = useState(0);
-  const [isStarted, setIsStarted] = useState(false); // Track if the start delay has passed
+  // --- Hooks must be called at the top level ---
+  const [isMounted, setIsMounted] = useState(false); // State for mount/HTML fade animation
+  const [visibleCount, setVisibleCount] = useState(0); // State for word count
+  const [isStarted, setIsStarted] = useState(false); // State for word animation start delay
 
-  // Split text into lines, then words, preserving structure
+  // Memoize lines and totalWords calculation
   const lines = useMemo(() => text.split('<br />').map(line => line.trim().split(/\s+/).filter(word => word)), [text]);
   const totalWords = useMemo(() => lines.reduce((count, line) => count + line.length, 0), [lines]);
 
-  // Effect to handle the initial start delay
+  // Effect for initial mount animation (used for HTML mode fade-in)
   useEffect(() => {
-    if (startDelay > 0) {
-      const startTimer = setTimeout(() => {
-        setIsStarted(true);
-      }, startDelay);
-      return () => clearTimeout(startTimer);
-    } else {
-      setIsStarted(true); // Start immediately if no delay
+    setIsMounted(true);
+  }, []);
+
+  // Effect to handle the word animation start delay
+  useEffect(() => {
+    // Only run if not rendering as HTML
+    if (!renderAsHTML) {
+      if (startDelay > 0) {
+        const startTimer = setTimeout(() => {
+          setIsStarted(true);
+        }, startDelay);
+        return () => clearTimeout(startTimer);
+      } else {
+        setIsStarted(true); // Start immediately if no delay
+      }
     }
-  }, [startDelay]);
+  }, [startDelay, renderAsHTML]); // Add renderAsHTML dependency
 
   // Effect to handle word-by-word animation *after* the start delay
   useEffect(() => {
-    // Only run if the start delay has passed and there are words left to show
-    if (isStarted && visibleCount < totalWords) {
+    // Only run if not rendering as HTML, start delay passed, and words left
+    if (!renderAsHTML && isStarted && visibleCount < totalWords) {
       const wordTimer = setTimeout(() => {
         setVisibleCount(prev => prev + 1);
       }, wordDelay);
-
-      // Note: lineDelay logic remains complex with this structure.
-
       return () => clearTimeout(wordTimer);
     }
-  }, [isStarted, visibleCount, totalWords, wordDelay]);
+  }, [isStarted, visibleCount, totalWords, wordDelay, renderAsHTML]); // Add renderAsHTML dependency
 
 
+  // --- Conditional Rendering Logic ---
+  if (renderAsHTML) {
+    // Render HTML with a simple container fade-in
+    return (
+      <div
+        className={className}
+        style={{
+          opacity: isMounted ? 1 : 0,
+          transition: `opacity ${animationDuration}ms ease-out ${startDelay}ms`, // Apply duration and start delay
+        }}
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
+    );
+  }
+
+  // --- Render word-by-word animation ---
   let wordCounter = 0;
-
   return (
     <div className={className}>
       {lines.map((line, lineIndex) => (

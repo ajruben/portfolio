@@ -101,12 +101,12 @@ const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
   const nodeRadius = 14;
   const strokeWidth = 4;
 
-  // Increase vertical spacing so the timeline "stretches" more
-  const verticalSpacing = 275;
+  // Adjust vertical spacing to be halfway between previous values
+  const verticalSpacing = 208; // Approx. halfway between 140 and 275
 
   // Widen the SVG so text has room. We’ll fill the container, so just keep a sensible ratio:
   const svgWidth = 400; // Increase width again
-  const textPadding = 40; // Increase padding again
+  const textPadding = 20; // Increase padding again
   const foreignObjectWidth = 200; // Decrease width again
   const nodeOffset = 150; // Increase node offset again
 
@@ -207,7 +207,7 @@ const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
             foreignObjectX = svgWidth - foreignObjectWidth + 35;
           }
 
-          const foreignObjectHeight = 250; // Revert height
+          const foreignObjectHeight = 155; // Adjusted height (halfway between 60 and 250)
           const foreignObjectY = yPos - foreignObjectHeight / 2;
 
           return (

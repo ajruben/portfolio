@@ -47,6 +47,10 @@ const config: Config = {
         '200': '200% 100%',
       }
     },
+    screens: {
+      'fullhd': '1920px',
+      '4k': '3840px',
+    },
   },
   plugins: [],
 };
