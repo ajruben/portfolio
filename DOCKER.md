@@ -13,6 +13,7 @@ This document explains how to use Docker with your Next.js portfolio project.
 - `Dockerfile.dev` - Development environment with hot reloading
 - `docker-compose.yml` - Container orchestration for both environments
 - `.dockerignore` - Excludes unnecessary files from Docker build context
+- `.devcontainer/` - VSCode Dev Container configuration (see below)
 
 ## Quick Start
 
@@ -158,9 +159,40 @@ docker tag portfolio-app your-registry/portfolio-app:latest
 docker push your-registry/portfolio-app:latest
 ```
 
+## VSCode Dev Container (Recommended for Development)
+
+For the best development experience, use the VSCode Dev Container setup:
+
+### Prerequisites
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+- Docker Desktop
+
+### Quick Start with Dev Container
+1. **Install the Dev Containers extension** in VSCode
+2. **Open the project** in VSCode
+3. **Click "Reopen in Container"** when prompted
+
+### Benefits of Dev Container
+- ✅ **Consistent Environment** - Same setup across all machines
+- ✅ **Pre-configured Extensions** - All necessary VSCode extensions installed
+- ✅ **Automatic Setup** - Dependencies and dev server start automatically
+- ✅ **Debugging Ready** - Debug configurations pre-configured
+- ✅ **Hot Reloading** - File changes reflected immediately
+- ✅ **Integrated Terminal** - Zsh with Oh My Zsh
+
+### What's Included
+- Node.js 18 with all dependencies
+- VSCode extensions (ESLint, Prettier, Tailwind CSS, etc.)
+- Debug configurations for Next.js
+- Port forwarding (3000, 3001)
+- Zsh terminal with Oh My Zsh
+
+For detailed dev container documentation, see [`.devcontainer/README.md`](.devcontainer/README.md).
+
 ## Next Steps
 
 - Add environment-specific configurations
 - Set up CI/CD pipeline with Docker
 - Consider using Docker secrets for sensitive data
-- Add health checks to the containers 
+- Add health checks to the containers
