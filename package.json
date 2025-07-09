@@ -6,7 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:build": "docker build -t portfolio-app .",
+    "docker:run": "docker run -p 3000:3000 portfolio-app",
+    "docker:dev": "docker-compose --profile dev up --build",
+    "docker:prod": "docker-compose up --build",
+    "docker:stop": "docker-compose down"
   },
   "dependencies": {
     "@types/katex": "^0.16.7",
