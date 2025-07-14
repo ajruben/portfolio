@@ -26,8 +26,11 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "react-syntax-highlighter": "^5.8.0",
+    "react-syntax-highlighter": "^15.6.1",
     "swiper": "^11.2.6"
+  },
+  "overrides": {
+    "prismjs": "1.30.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -38,6 +41,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "patch-package": "^8.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

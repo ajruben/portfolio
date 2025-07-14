@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Add smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --background: grey;
   --foreground: #171717;

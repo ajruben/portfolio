@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import ProjectImageCarousel from '@/components/ProjectImageCarousel'; // Import the carousel component
 import dynamic from 'next/dynamic'; // Import for dynamic loading
 import Image from 'next/image'; // Import Image
+import ScrollFadeWrapper from '@/components/ScrollFadeWrapper'; // Import the fade wrapper
 // Removed duplicate Image import and comments
 
 // --- generateMetadata: Use type assertion 'as any' for props as a workaround ---
@@ -14,8 +15,9 @@ export async function generateMetadata(props: any): Promise<Metadata> {
    const { params } = props; // Destructure params
    // Added console logs for debugging the "params" error if it persists
    console.log("[generateMetadata] Received params:", params);
-   // Removed duplicate function definition
-   const currentId = params.id;
+   // Await params before accessing its properties
+   const resolvedParams = await params;
+   const currentId = resolvedParams.id;
    const project = projectsData.find(p => p.id.toString() === currentId);
    console.log("[generateMetadata] Found project:", project?.title);
 
@@ -52,12 +54,13 @@ const ProjectContentComponents: { [key: string]: React.ComponentType<{ project: 
 };
 
 // --- The Page Component: Use type assertion 'as any' for props as a workaround ---
-// No longer needs to be async unless fetching data directly here
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function ProjectDetailPage(props: any) { // Use props: any
+export default async function ProjectDetailPage(props: any) { // Use props: any
   const { params } = props; // Destructure params
   console.log("[ProjectDetailPage] Received params:", params); // Log received params
-  const projectId = params.id; // Access param ID
+  // Await params before accessing its properties
+  const resolvedParams = await params;
+  const projectId = resolvedParams.id; // Access param ID
   // Removed duplicate function signature and params destructuring
 
   // Find project summary data
@@ -107,17 +110,21 @@ export default function ProjectDetailPage(props: any) { // Use props: any
         )}
 
         {/* Render the dynamically loaded project-specific component */}
-        <div className="prose prose-invert prose-lg max-w-none mb-8 text-gray-300">
-          <h2 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-gray-600 pb-2">About this Project</h2>
-          {ProjectSpecificContent ? (
-            <ProjectSpecificContent project={project} /> // Pass project data if needed
-          ) : (
-            // Fallback if no specific component is found for the ID
-            <div>
-              <p>{project.description}</p>
-              <p className="mt-4 italic text-gray-500">Detailed content component not found for this project.</p>
+        <div className="relative h-[600px] overflow-hidden">
+          <ScrollFadeWrapper>
+            <div className="prose prose-invert prose-lg max-w-none mb-8 text-gray-300 px-4">
+              <h2 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-gray-600 pb-2">About this Project</h2>
+              {ProjectSpecificContent ? (
+                <ProjectSpecificContent project={project} /> // Pass project data if needed
+              ) : (
+                // Fallback if no specific component is found for the ID
+                <div>
+                  <p>{project.description}</p>
+                  <p className="mt-4 italic text-gray-500">Detailed content component not found for this project.</p>
+                </div>
+              )}
             </div>
-          )}
+          </ScrollFadeWrapper>
         </div>
 
         {/* Technologies Used */}

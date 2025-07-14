@@ -1,0 +1,253 @@
+.referencesSection {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.referencesTitle {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  color: rgba(255, 255, 255, 1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+/* Style for individual reference entries */
+.referencesSection :global(.reference-entry) {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+  scroll-margin-top: 80px; /* Offset for fixed header */
+}
+
+.referencesSection :global(.reference-entry:hover) {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.referencesSection :global(.reference-entry:last-child) {
+  margin-bottom: 0;
+}
+
+/* Reference number styling */
+.referencesSection :global(.ref-number) {
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #60a5fa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.875rem;
+  margin-top: 0.1rem;
+}
+
+/* Reference content styling */
+.referencesSection :global(.ref-content) {
+  flex: 1;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* In-text citation links */
+.citationLink {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.15s ease;
+  position: relative;
+  top: -0.125rem;
+  margin-left: 0.125rem;
+}
+
+.citationLink:hover {
+  color: #93bbfc;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Italics for journal/book titles */
+.referencesSection i,
+.referencesSection em {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Style for links in references */
+.referencesSection a {
+  color: #60a5fa;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: 1px dotted rgba(96, 165, 250, 0.5);
+  font-size: 0.875rem;
+}
+
+.referencesSection a:hover {
+  color: #93bbfc;
+  border-bottom-color: #93bbfc;
+  border-bottom-style: solid;
+}
+
+/* Additional professional touches */
+.referencesSection strong {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Add a subtle separator line above references */
+.referencesSeparator {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  margin: 2.5rem auto 2rem auto;
+  max-width: 200px;
+}
+
+/* Add subtle background to reference section */
+.referencesWrapper {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-top: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Target highlighting when jumping to reference */
+.referencesSection :global(.reference-entry:target) {
+  background: linear-gradient(135deg, 
+    rgba(96, 165, 250, 0.25) 0%, 
+    rgba(147, 187, 252, 0.2) 50%, 
+    rgba(96, 165, 250, 0.25) 100%);
+  border: 2px solid rgba(96, 165, 250, 0.8);
+  box-shadow: 
+    0 0 50px rgba(96, 165, 250, 0.6),
+    inset 0 0 30px rgba(96, 165, 250, 0.3),
+    0 8px 25px rgba(0, 0, 0, 0.4);
+  transform: scale(1.02);
+  animation: luxuryHighlight 2.5s ease-out;
+}
+
+/* Make the reference text itself glow when targeted */
+.referencesSection :global(.reference-entry:target .ref-content) {
+  color: rgba(255, 255, 255, 1) !important;
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 25px rgba(96, 165, 250, 0.6),
+    0 0 35px rgba(96, 165, 250, 0.4);
+  animation: textGlow 2.5s ease-out;
+}
+
+/* Enhanced styling for italics in targeted references */
+.referencesSection :global(.reference-entry:target .ref-content i),
+.referencesSection :global(.reference-entry:target .ref-content em) {
+  color: rgba(255, 255, 255, 1) !important;
+  text-shadow: 
+    0 0 10px rgba(147, 187, 252, 0.8),
+    0 0 20px rgba(147, 187, 252, 0.6);
+}
+
+/* Make links in targeted references more prominent */
+.referencesSection :global(.reference-entry:target .ref-content a) {
+  color: #93bbfc !important;
+  text-shadow: 0 0 10px rgba(147, 187, 252, 0.8);
+  border-bottom-color: #93bbfc !important;
+  border-bottom-width: 2px !important;
+}
+
+@keyframes textGlow {
+  0% {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 
+      0 0 20px rgba(255, 255, 255, 1),
+      0 0 40px rgba(96, 165, 250, 0.8),
+      0 0 60px rgba(96, 165, 250, 0.6),
+      0 0 80px rgba(96, 165, 250, 0.4);
+    filter: brightness(1.3);
+  }
+  20% {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 
+      0 0 15px rgba(255, 255, 255, 0.9),
+      0 0 30px rgba(147, 187, 252, 0.7),
+      0 0 45px rgba(147, 187, 252, 0.5);
+    filter: brightness(1.2);
+  }
+  40% {
+    filter: brightness(1.15);
+  }
+  100% {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 
+      0 0 15px rgba(255, 255, 255, 0.8),
+      0 0 25px rgba(96, 165, 250, 0.6),
+      0 0 35px rgba(96, 165, 250, 0.4);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes luxuryHighlight {
+  0% {
+    background: rgba(96, 165, 250, 0.35);
+    border-color: rgba(96, 165, 250, 0.9);
+    box-shadow: 
+      0 0 50px rgba(96, 165, 250, 0.8),
+      inset 0 0 30px rgba(96, 165, 250, 0.4),
+      0 8px 25px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+  }
+  15% {
+    background: rgba(147, 187, 252, 0.3);
+    border-color: rgba(147, 187, 252, 0.8);
+    box-shadow: 
+      0 0 40px rgba(147, 187, 252, 0.7),
+      inset 0 0 25px rgba(147, 187, 252, 0.3),
+      0 6px 20px rgba(0, 0, 0, 0.35);
+  }
+  30% {
+    background: rgba(96, 165, 250, 0.25);
+    border-color: rgba(96, 165, 250, 0.7);
+    transform: scale(1.03);
+  }
+  100% {
+    background: rgba(96, 165, 250, 0.15);
+    border-color: rgba(96, 165, 250, 0.5);
+    box-shadow: 
+      0 0 30px rgba(96, 165, 250, 0.4),
+      inset 0 0 20px rgba(96, 165, 250, 0.2),
+      0 4px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+  }
+}
+
+/* Add a pulse effect for the reference number when targeted */
+.referencesSection :global(.reference-entry:target .ref-number) {
+  animation: numberPulse 2.5s ease-out;
+}
+
+@keyframes numberPulse {
+  0%, 20%, 40% {
+    color: #ffffff;
+    text-shadow: 
+      0 0 20px rgba(96, 165, 250, 1),
+      0 0 40px rgba(96, 165, 250, 0.8),
+      0 0 60px rgba(96, 165, 250, 0.6);
+    transform: scale(1.2);
+  }
+  10%, 30%, 50% {
+    color: #93bbfc;
+    text-shadow: 
+      0 0 10px rgba(147, 187, 252, 0.8),
+      0 0 20px rgba(147, 187, 252, 0.6);
+    transform: scale(1.1);
+  }
+  100% {
+    color: #60a5fa;
+    text-shadow: none;
+    transform: scale(1);
+  }
+} 

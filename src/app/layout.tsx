@@ -14,12 +14,13 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Ruben Swarts - Portfolio",
   description: "Showcasing my projects and interests",
-  // Explicitly set the viewport meta tag configuration
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    // maximumScale: 1, // Optionally uncomment to prevent user zooming
-  },
+};
+
+// Viewport configuration must be a separate export in Next.js 15
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  // maximumScale: 1, // Optionally uncomment to prevent user zooming
 };
 
 // Root layout component
