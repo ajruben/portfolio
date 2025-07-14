@@ -110,9 +110,9 @@ export default async function ProjectDetailPage(props: any) { // Use props: any
         )}
 
         {/* Render the dynamically loaded project-specific component */}
-        <div className="relative h-[600px] overflow-hidden">
+        <div className="relative" style={{ height: 'calc(100vh - 400px)', minHeight: '600px' }}>
           <ScrollFadeWrapper>
-            <div className="prose prose-invert prose-lg max-w-none mb-8 text-gray-300 px-4">
+            <div className="prose prose-invert prose-lg max-w-none text-gray-300 px-4">
               <h2 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-gray-600 pb-2">About this Project</h2>
               {ProjectSpecificContent ? (
                 <ProjectSpecificContent project={project} /> // Pass project data if needed
@@ -123,23 +123,27 @@ export default async function ProjectDetailPage(props: any) { // Use props: any
                   <p className="mt-4 italic text-gray-500">Detailed content component not found for this project.</p>
                 </div>
               )}
+
+              {/* Technologies Used - Now inside ScrollFadeWrapper */}
+              <div className="mt-16 pt-8 border-t border-gray-600">
+                <h3 className="text-2xl font-semibold mb-3 text-gray-200">Technologies Used</h3>
+                <div className="flex flex-wrap gap-3 mb-8">
+                  {project.technologies.map((tech) => (
+                    <span key={tech} className="bg-slate-700 text-slate-200 text-sm font-medium px-3 py-1 rounded-md shadow">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Links Section - Now inside ScrollFadeWrapper */}
+              <div className="flex flex-wrap gap-4 pt-6 border-t border-gray-700">
+                <Link href="/projects" className="inline-block bg-gray-500 text-white px-5 py-2 rounded hover:bg-gray-600 transition-colors duration-200 text-sm font-medium">
+                  Back to Projects
+                </Link>
+              </div>
             </div>
           </ScrollFadeWrapper>
-        </div>
-
-        {/* Technologies Used */}
-        <div className="mb-8">
-           {/* ... technologies rendering ... */}
-            <h3 className="text-2xl font-semibold mb-3 text-gray-200">Technologies Used</h3>
-            <div className="flex flex-wrap gap-3">
-                {project.technologies.map((tech) => ( <span key={tech} className="bg-slate-700 text-slate-200 text-sm font-medium px-3 py-1 rounded-md shadow">{tech}</span> ))}
-            </div>
-        </div>
-
-        {/* Links Section */}
-        <div className="flex flex-wrap gap-4 pt-6 border-t border-gray-700">
-           {/* ... links rendering ... */}
-            <Link href="/projects" className="inline-block bg-gray-500 text-white px-5 py-2 rounded hover:bg-gray-600 transition-colors duration-200 text-sm font-medium">Back to Projects</Link>
         </div>
       </div>
     </div>
