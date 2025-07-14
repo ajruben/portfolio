@@ -5,7 +5,6 @@
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopContainer",
 
-  // Configure tool-specific properties
   "customizations": {
     "vscode": {
       "extensions": [
@@ -44,7 +43,6 @@
     }
   },
 
-  // Use 'forwardPorts' to make a list of ports inside the container available locally
   "forwardPorts": [3000, 3001],
   "portsAttributes": {
     "3000": {
@@ -57,32 +55,16 @@
     }
   },
 
-  // Use 'postCreateCommand' to run commands after the container is created
   "postCreateCommand": "npm install",
 
-  // Use 'postStartCommand' to run commands after the container starts
-  "postStartCommand": "npm run dev",
-
-  // Configure environment variables
   "containerEnv": {
     "NODE_ENV": "development"
   },
 
-  // Mount the local file system
   "mounts": [
     "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/node_modules,target=/workspace/node_modules,type=volume"
+    "source=portfolio-node-modules,target=/workspace/node_modules,type=volume"
   ],
 
-  // Features to add to the dev container
-  "features": {
-    "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "18"
-    },
-    "ghcr.io/devcontainers/features/github-cli:1": {}
-  },
-
-  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root
   "remoteUser": "node"
 }

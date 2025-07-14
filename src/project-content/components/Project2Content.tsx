@@ -30,13 +30,6 @@ const Project2Content: React.FC<ProjectContentProps> = ({ project }) => {
         // Initialize Cite.js with the fetched BibTeX string
         const cite = new Cite(bibtexString);
 
-        // Create a mapping of citation keys to numbers based on order of appearance
-        const citationMapping: { [key: string]: number } = {
-          'gtwr': 1,  // First citation in text
-          'GWmodel': 2,  // Second citation in text
-          'gollini2014gwmodelrpackageexploring': 3  // Not currently used in text
-        };
-
         // Generate numbered citations for use in text
         setCitations({
           'Fotheringham et al., 2015 (GTWR)': '1',
@@ -46,19 +39,19 @@ const Project2Content: React.FC<ProjectContentProps> = ({ project }) => {
 
         // Post-process the bibliography to add numbers and IDs for linking
         const bibliographyEntries = cite.data;
-        
+
         // Map entries to their correct order based on citation usage
         const orderedEntries = [
-          bibliographyEntries.find((entry: any) => entry.id === 'gtwr'),  // [1]
-          bibliographyEntries.find((entry: any) => entry.id === 'GWmodel'),  // [2]
-          bibliographyEntries.find((entry: any) => entry.id === 'gollini2014gwmodelrpackageexploring')  // [3]
+          bibliographyEntries.find((entry: { id: string }) => entry.id === 'gtwr'),  // [1]
+          bibliographyEntries.find((entry: { id: string }) => entry.id === 'GWmodel'),  // [2]
+          bibliographyEntries.find((entry: { id: string }) => entry.id === 'gollini2014gwmodelrpackageexploring')  // [3]
         ].filter(Boolean);  // Remove any undefined entries
-        
+
         // Generate bibliography HTML for each entry in the correct order
         const processedBibliography = orderedEntries
           .map((entry, index) => {
             if (!entry) return '';
-            
+
             const refNumber = index + 1;
             const entryCite = new Cite(entry);
             let entryHtml = entryCite.format('bibliography', {
@@ -66,19 +59,19 @@ const Project2Content: React.FC<ProjectContentProps> = ({ project }) => {
               template: 'apa',
               lang: 'en-US',
             }).trim();
-            
+
             // Make DOI links more prominent
             entryHtml = entryHtml.replace(
               /https:\/\/doi\.org\/([^\s<]+)/g,
               '<a href="https://doi.org/$1" target="_blank" rel="noopener noreferrer">https://doi.org/$1</a>'
             );
-            
+
             // Style URLs
             entryHtml = entryHtml.replace(
               /https:\/\/([^\s<]+)/g,
               '<a href="https://$1" target="_blank" rel="noopener noreferrer">https://$1</a>'
             );
-            
+
             // Wrap with number and ID for linking
             return `<div class="reference-entry" id="ref-${refNumber}">
               <span class="ref-number">[${refNumber}]</span>
@@ -144,26 +137,26 @@ const Project2Content: React.FC<ProjectContentProps> = ({ project }) => {
       {/*——————————  Research Context ——————————*/}
       <h3 className="text-xl font-semibold mt-6">Research Context</h3>
       <p>
-        The relationship between environmental factors and crime patterns has long been a subject of 
-        criminological research. Temperature, in particular, has been hypothesized to influence criminal 
-        behavior through various mechanisms including increased social interactions, physiological arousal, 
-        and routine activity patterns. This research leverages advanced spatio-temporal regression techniques 
+        The relationship between environmental factors and crime patterns has long been a subject of
+        criminological research. Temperature, in particular, has been hypothesized to influence criminal
+        behavior through various mechanisms including increased social interactions, physiological arousal,
+        and routine activity patterns. This research leverages advanced spatio-temporal regression techniques
         to quantify these relationships at an unprecedented granular level across Greater London.
       </p>
       <p className="mt-4">
-        Traditional regression models often fail to capture the complex spatial and temporal dependencies 
-        inherent in crime data. Geographically Weighted Regression (GWR) addresses spatial heterogeneity, 
-        but crime patterns also evolve over time. The Geographically and Temporally Weighted Regression 
-        (GTWR) framework extends GWR by incorporating temporal dynamics, allowing coefficients to vary 
+        Traditional regression models often fail to capture the complex spatial and temporal dependencies
+        inherent in crime data. Geographically Weighted Regression (GWR) addresses spatial heterogeneity,
+        but crime patterns also evolve over time. The Geographically and Temporally Weighted Regression
+        (GTWR) framework extends GWR by incorporating temporal dynamics, allowing coefficients to vary
         across both space and time dimensions.
       </p>
 
       {/*——————————  Methodology Deep Dive ——————————*/}
       <h3 className="text-xl font-semibold mt-6">Methodology Deep Dive</h3>
       <p>
-        The optimization process began with profiling the original GTWR implementation from the GWmodel 
-        package. Performance bottlenecks were identified primarily in the weight matrix calculations and 
-        the iterative fitting procedures. The computational complexity grows as O(n²) for spatial weights 
+        The optimization process began with profiling the original GTWR implementation from the GWmodel
+        package. Performance bottlenecks were identified primarily in the weight matrix calculations and
+        the iterative fitting procedures. The computational complexity grows as O(n²) for spatial weights
         and O(n³) for the regression computations, where n represents the number of spatio-temporal observations.
       </p>
       <p className="mt-4">
@@ -192,7 +185,7 @@ const Project2Content: React.FC<ProjectContentProps> = ({ project }) => {
       {/*——————————  Data Results ——————————*/}
       <h3 className="text-xl font-semibold mt-6">Preliminary Results</h3>
       <p>
-        The analysis reveals significant spatio-temporal heterogeneity in the temperature-crime relationship 
+        The analysis reveals significant spatio-temporal heterogeneity in the temperature-crime relationship
         across Greater London. Key findings include:
       </p>
       <ul className="list-disc list-inside mt-2">
@@ -202,10 +195,10 @@ const Project2Content: React.FC<ProjectContentProps> = ({ project }) => {
         <li>A 1°C increase in temperature correlates with a 2.4% increase in violent crime</li>
         <li>Property crimes show a non-linear relationship with temperature, peaking at 22°C</li>
       </ul>
-      
+
       <p className="mt-4">
-        The GTWR model explains 78% of the variance in crime patterns, compared to 61% for traditional 
-        OLS regression and 69% for standard GWR. The improved performance demonstrates the importance of 
+        The GTWR model explains 78% of the variance in crime patterns, compared to 61% for traditional
+        OLS regression and 69% for standard GWR. The improved performance demonstrates the importance of
         capturing both spatial and temporal dynamics in crime modeling.
       </p>
 
@@ -270,9 +263,9 @@ const Project2Content: React.FC<ProjectContentProps> = ({ project }) => {
       <div className={styles.referencesSeparator} />
       <div className={styles.referencesWrapper}>
         <h3 className={styles.referencesTitle}>References</h3>
-        <div 
+        <div
           className={styles.referencesSection}
-          dangerouslySetInnerHTML={{ __html: bibliography }} 
+          dangerouslySetInnerHTML={{ __html: bibliography }}
         />
       </div>
     </section>

@@ -13,6 +13,8 @@ RUN apk add --no-cache \
     make \
     g++
 
+# Note: GitHub CLI can be installed later if needed
+
 # Install global npm packages for development
 RUN npm install -g \
     @next/codemod \

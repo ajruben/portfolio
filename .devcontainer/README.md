@@ -28,7 +28,7 @@ VSCode will automatically:
 ### 🛠️ Development Tools
 - Node.js 18 (Alpine Linux)
 - npm with global dev packages
-- Git and GitHub CLI
+- Git (GitHub CLI can be added if needed)
 - Zsh with Oh My Zsh
 - Python 3 and build tools
 
@@ -60,8 +60,9 @@ VSCode will automatically:
 ### Automatic Setup
 When the container starts, it automatically:
 1. Installs all npm dependencies
-2. Starts the Next.js development server
-3. Forwards ports to your local machine
+2. Forwards ports to your local machine
+
+To start the development server, run `npm run dev` in the VSCode terminal.
 
 ### File Synchronization
 - Your local workspace is mounted into the container
@@ -77,7 +78,7 @@ Pre-configured debug configurations are available:
 ## Usage
 
 ### Starting Development
-The dev server starts automatically when the container launches. You can access:
+After the container launches, start the development server by running `npm run dev` in the VSCode terminal. You can then access:
 - **Application**: http://localhost:3000
 - **Development tools**: Available in VSCode terminal
 

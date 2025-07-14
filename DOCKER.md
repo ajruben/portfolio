@@ -187,6 +187,7 @@ For the best development experience, use the VSCode Dev Container setup:
 - Debug configurations for Next.js
 - Port forwarding (3000, 3001)
 - Zsh terminal with Oh My Zsh
+- Git support (GitHub CLI can be added if needed)
 
 For detailed dev container documentation, see [`.devcontainer/README.md`](.devcontainer/README.md).
 
