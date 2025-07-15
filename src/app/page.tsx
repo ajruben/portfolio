@@ -2,12 +2,9 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// import FadeInStagger from '@/components/FadeInStagger'; // Remove FadeInStagger
-import { motion } from 'framer-motion'; // Import motion
   import TopProjectBillboard from '@/components/TopProjectBillboard';
   import { projectsData } from '@/data/projects';
   import Link from 'next/link'; // Import Link
-  import { typography, containers } from '@/utils/responsive';
   
   // Removed metadata export as it's not allowed in Client Components
   // export const metadata: Metadata = { ... };
@@ -24,27 +21,6 @@ import { motion } from 'framer-motion'; // Import motion
   };
 
   // Removed poem definition
-
-  // Estimate header height (p-4 = 1rem = 16px => 4 * 16 = 64px)
-  const headerHeight = '64px'; // Or adjust if header height changes
-
-  // Framer Motion Variants
-  const containerVariants = {
-    hidden: {}, // Container doesn't animate itself, just orchestrates children
-    visible: {
-      transition: {
-        staggerChildren: 0.4, // Time between each child animating
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
 
 
   return (

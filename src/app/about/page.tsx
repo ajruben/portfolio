@@ -6,7 +6,6 @@ import WordFadeIn from '@/components/WordFadeIn';
 import JourneyTimeline from '@/components/JourneyTimeline';
 // Removed CodeBlock import
 import { motion } from 'framer-motion';
-import { typography, spacing, containers } from '@/utils/responsive';
 
 interface JourneyPhase {
   id: string;
@@ -153,7 +152,7 @@ The code speaks back.`;
             animationDuration={500}
             className="w-full flex flex-col items-center"
           >
-            <div className={`${containers.narrow} w-full`}>
+            <div className="max-w-3xl w-full">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl font-bold mb-4 sm:mb-6">About Me</h1>
               <p className="text-sm sm:text-base md:text-lg fullhd:text-base 2k:text-lg mb-4 sm:mb-6 px-2 sm:px-4">
                 With my background in Physics BSc. and Applied Data Science MSc., coupled
@@ -174,7 +173,7 @@ The code speaks back.`;
             </div>
 
             {/* Skills + Tech Stack */}
-            <div className={`${containers.narrow} w-full mb-6 sm:mb-8 translate-y-20 sm:translate-y-30 md:translate-y-45`}>
+            <div className="max-w-3xl w-full mb-6 sm:mb-8 translate-y-20 sm:translate-y-30 md:translate-y-45">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-left md:text-center">
                 <div>
                   <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl font-semibold mb-2 sm:mb-3">Skills</h2>

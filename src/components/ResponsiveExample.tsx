@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useBreakpoint, typography, spacing, containers } from '@/utils/responsive';
+import { useBreakpoint, typography, containers } from '@/utils/responsive';
 
 // Example component demonstrating responsive design patterns
 export default function ResponsiveExample() {
