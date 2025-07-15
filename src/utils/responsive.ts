@@ -97,12 +97,12 @@ export function responsiveClass(
 
 // Typography scale generator for consistent responsive text
 export const typography = {
-  h1: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl fullhd:text-5xl 2k:text-6xl',
-  h2: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl fullhd:text-4xl 2k:text-5xl',
-  h3: 'text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl fullhd:text-3xl 2k:text-4xl',
-  h4: 'text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl fullhd:text-2xl 2k:text-3xl',
-  body: 'text-sm sm:text-base md:text-base lg:text-lg fullhd:text-base 2k:text-lg',
-  small: 'text-xs sm:text-sm md:text-sm lg:text-base fullhd:text-sm 2k:text-base',
+  h1: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl fullhd:text-5xl 2k:text-6xl 4k:text-7xl',
+  h2: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl fullhd:text-4xl 2k:text-5xl 4k:text-6xl',
+  h3: 'text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl fullhd:text-3xl 2k:text-4xl 4k:text-5xl',
+  h4: 'text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl fullhd:text-2xl 2k:text-3xl 4k:text-4xl',
+  body: 'text-sm sm:text-base md:text-base lg:text-lg fullhd:text-base 2k:text-lg 4k:text-xl',
+  small: 'text-xs sm:text-sm md:text-sm lg:text-base fullhd:text-sm 2k:text-base 4k:text-lg',
   
   // Fluid typography versions
   fluidH1: 'text-fluid-4xl',
@@ -115,11 +115,11 @@ export const typography = {
 
 // Spacing scale for consistent responsive spacing
 export const spacing = {
-  xs: 'p-2 sm:p-3 md:p-4 fullhd:p-3 2k:p-4',
-  sm: 'p-3 sm:p-4 md:p-6 fullhd:p-4 2k:p-6',
-  md: 'p-4 sm:p-6 md:p-8 fullhd:p-6 2k:p-8',
-  lg: 'p-6 sm:p-8 md:p-12 fullhd:p-8 2k:p-12',
-  xl: 'p-8 sm:p-12 md:p-16 fullhd:p-12 2k:p-16',
+  xs: 'p-2 sm:p-3 md:p-4 fullhd:p-3 2k:p-4 4k:p-5',
+  sm: 'p-3 sm:p-4 md:p-6 fullhd:p-4 2k:p-6 4k:p-8',
+  md: 'p-4 sm:p-6 md:p-8 fullhd:p-6 2k:p-8 4k:p-10',
+  lg: 'p-6 sm:p-8 md:p-12 fullhd:p-8 2k:p-12 4k:p-16',
+  xl: 'p-8 sm:p-12 md:p-16 fullhd:p-12 2k:p-16 4k:p-20',
   
   // Fluid spacing versions
   fluidXs: 'p-fluid-xs',
@@ -131,7 +131,7 @@ export const spacing = {
 
 // Container widths for consistent layouts
 export const containers = {
-  narrow: 'max-w-2xl lg:max-w-3xl xl:max-w-4xl fullhd:max-w-3xl 2k:max-w-4xl',
-  standard: 'max-w-4xl lg:max-w-5xl xl:max-w-6xl fullhd:max-w-5xl 2k:max-w-6xl',
-  wide: 'max-w-6xl lg:max-w-7xl xl:max-w-[90rem] fullhd:max-w-7xl 2k:max-w-[90rem]',
+  narrow: 'max-w-2xl lg:max-w-3xl xl:max-w-4xl fullhd:max-w-3xl 2k:max-w-4xl 4k:max-w-5xl',
+  standard: 'max-w-4xl lg:max-w-5xl xl:max-w-6xl fullhd:max-w-5xl 2k:max-w-6xl 4k:max-w-7xl',
+  wide: 'max-w-6xl lg:max-w-7xl xl:max-w-[90rem] fullhd:max-w-7xl 2k:max-w-[90rem] 4k:max-w-[110rem]',
 };
