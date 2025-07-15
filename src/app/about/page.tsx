@@ -153,8 +153,8 @@ The code speaks back.`;
             className="w-full flex flex-col items-center"
           >
             <div className="max-w-3xl w-full">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl font-bold mb-4 sm:mb-6">About Me</h1>
-              <p className="text-sm sm:text-base md:text-lg fullhd:text-base 2k:text-lg mb-4 sm:mb-6 px-2 sm:px-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl 4k:text-6xl font-bold mb-4 sm:mb-6">About Me</h1>
+              <p className="text-sm sm:text-base md:text-lg fullhd:text-base 2k:text-lg 4k:text-xl mb-4 sm:mb-6 px-2 sm:px-4">
                 With my background in Physics BSc. and Applied Data Science MSc., coupled
                 with my industry experience and interest in programming and GIS, I worked on several interesting projects over the years. On this page, you can learn more about my background. 
               </p>
@@ -167,7 +167,7 @@ The code speaks back.`;
                   wordDelay={300}
                   lineDelay={2000}
                   animationDuration={1500}
-                  className="text-sm sm:text-base md:text-lg fullhd:text-base 2k:text-lg italic text-gray-500 dark:text-gray-300"
+                  className="text-sm sm:text-base md:text-lg fullhd:text-base 2k:text-lg 4k:text-xl italic text-gray-500 dark:text-gray-300"
                 />
               </div>
             </div>
@@ -176,7 +176,7 @@ The code speaks back.`;
             <div className="max-w-3xl w-full mb-2 sm:mb-4 translate-y-4 sm:translate-y-6 md:translate-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-left md:text-center">
                 <div>
-                  <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl font-semibold mb-2 sm:mb-3">Skills</h2>
+                  <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl 4k:text-4xl font-semibold mb-2 sm:mb-3">Skills</h2>
                   <FadeInStagger
                     as="ul"
                     className="list-disc list-inside mb-4 text-left mx-auto md:inline-block text-sm sm:text-base fullhd:text-sm 2k:text-base"
@@ -190,7 +190,7 @@ The code speaks back.`;
                   </FadeInStagger>
                 </div>
                 <div>
-                  <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl font-semibold mb-2 sm:mb-3">Website Tech Stack</h2>
+                  <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl 4k:text-4xl font-semibold mb-2 sm:mb-3">Website Tech Stack</h2>
                   <FadeInStagger
                     as="ul"
                     className="list-disc list-inside text-left mx-auto md:inline-block text-sm sm:text-base fullhd:text-sm 2k:text-base"
@@ -264,7 +264,7 @@ The code speaks back.`;
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
                   transition={{ duration: 0.6 }}
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl font-bold mb-4 sm:mb-6"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl 4k:text-6xl font-bold mb-4 sm:mb-6"
                 >
                   {phase.title}
                 </motion.h2>
@@ -273,7 +273,7 @@ The code speaks back.`;
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-base sm:text-lg md:text-xl fullhd:text-lg 2k:text-xl text-gray-700 dark:text-gray-300"
+                  className="text-base sm:text-lg md:text-xl fullhd:text-lg 2k:text-xl 4k:text-2xl text-gray-700 dark:text-gray-300"
                 >
                   {phase.content}
                 </motion.p>

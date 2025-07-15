@@ -80,7 +80,7 @@ export default async function ProjectDetailPage(props: any) { // Use props: any
     <div className="container mx-auto px-4 py-12">
       {/* Project Header */}
       <div className="mb-10 text-center">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl font-bold mb-3 text-gray-100">{project.title}</h1>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl 4k:text-6xl font-bold mb-3 text-gray-100">{project.title}</h1>
       </div>
 
       {/* Main Content Area */}
@@ -113,7 +113,7 @@ export default async function ProjectDetailPage(props: any) { // Use props: any
         <div className="relative" style={{ height: 'calc(100vh - 400px)', minHeight: '600px' }}>
           <ScrollFadeWrapper>
             <div className="prose prose-invert prose-lg max-w-none text-gray-300 px-4">
-              <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl font-semibold text-gray-200 mb-4 border-b border-gray-600 pb-2">About this Project</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl 4k:text-4xl font-semibold text-gray-200 mb-4 border-b border-gray-600 pb-2">About this Project</h2>
               {ProjectSpecificContent ? (
                 <ProjectSpecificContent project={project} /> // Pass project data if needed
               ) : (
@@ -126,7 +126,7 @@ export default async function ProjectDetailPage(props: any) { // Use props: any
 
               {/* Technologies Used - Now inside ScrollFadeWrapper */}
               <div className="mt-16 pt-8 border-t border-gray-600">
-                <h3 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl font-semibold mb-3 text-gray-200">Technologies Used</h3>
+                <h3 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl 4k:text-4xl font-semibold mb-3 text-gray-200">Technologies Used</h3>
                 <div className="flex flex-wrap gap-3 mb-8">
                   {project.technologies.map((tech) => (
                     <span key={tech} className="bg-slate-700 text-slate-200 text-sm font-medium px-3 py-1 rounded-md shadow">

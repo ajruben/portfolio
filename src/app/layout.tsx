@@ -41,7 +41,7 @@ export default function RootLayout({
         <ClientProviders>
           <div className="flex flex-col min-h-screen"> {/* Flex layout for sticky footer */}
             <Header />
-            <main className="flex-grow container mx-auto px-4 py-8 fullhd:max-w-fullhd 4k:max-w-4k"> {/* Main content area */}
+            <main className="flex-grow container mx-auto px-4 py-8 fullhd:max-w-7xl 2k:max-w-[90rem] 4k:max-w-[110rem]"> {/* Main content area */}
               {children} {/* Page content will be rendered here */}
             </main>
             <Footer />

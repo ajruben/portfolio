@@ -27,8 +27,8 @@ import { useRouter } from 'next/navigation';
     <main className="min-h-screen bg-gray-900 text-white px-4 py-8">
       {/* Hero section */}
       <section className="mb-16 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl fullhd:text-5xl 2k:text-6xl font-bold mb-4 text-center">Welcome to My Portfolio</h1>
-            <p className="text-base sm:text-lg md:text-xl fullhd:text-lg 2k:text-xl mb-4 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl fullhd:text-5xl 2k:text-6xl 4k:text-7xl font-bold mb-4 text-center">Welcome to My Portfolio</h1>
+            <p className="text-base sm:text-lg md:text-xl fullhd:text-lg 2k:text-xl 4k:text-2xl mb-4 text-center">
               Hi, I&apos;m Ruben.
             </p>
             {/* Link the paragraph and add a subtle icon */}
@@ -70,8 +70,8 @@ import { useRouter } from 'next/navigation';
       <div className="flex-grow"></div>
 
       {/* Featured Projects section */}
-      <section className="max-w-5xl lg:max-w-6xl xl:max-w-7xl fullhd:max-w-6xl 2k:max-w-7xl mx-auto mb-16">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl font-bold mb-6 text-center">Featured Projects</h2>
+      <section className="max-w-5xl lg:max-w-6xl xl:max-w-7xl fullhd:max-w-6xl 2k:max-w-7xl 4k:max-w-[90rem] mx-auto mb-16">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl 4k:text-6xl font-bold mb-6 text-center">Featured Projects</h2>
           {projectsData.length > 0 && (
             <TopProjectBillboard projects={projectsData} />
           )}
