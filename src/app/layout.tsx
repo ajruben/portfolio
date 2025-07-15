@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css"; // Keep this for Tailwind
-import Header from "@/components/Header"; 
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ClientProviders from "@/components/ClientProviders";
 
@@ -39,7 +39,7 @@ export default function RootLayout({
       <body className={inter.className}> {/* Apply Inter font to the body */}
         {/* Tailwind CSS classes for styling */}
         <ClientProviders>
-          <div className="flex flex-col min-h-screen"> {/* Flex layout for sticky footer */}
+          <div className="flex flex-col min-h-screen bg-gray-900"> {/* Flex layout for sticky footer with consistent background */}
             <Header />
             <main className="flex-grow container mx-auto px-4 py-8 fullhd:max-w-7xl 2k:max-w-[90rem] 4k:max-w-[110rem]"> {/* Main content area */}
               {children} {/* Page content will be rendered here */}

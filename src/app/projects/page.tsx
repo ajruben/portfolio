@@ -19,8 +19,9 @@ export default function ProjectsPage(props: any) {
 
   return (
     // Main container for the projects page content with responsive padding
-    <div className="container mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl fullhd:text-5xl 2k:text-6xl 4k:text-7xl font-bold mb-6 sm:mb-8 text-center text-gray-100">My Projects</h1>
+    <div className="text-white">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl fullhd:text-5xl 2k:text-6xl 4k:text-7xl font-bold mb-6 sm:mb-8 text-center text-gray-100">My Projects</h1>
 
       {/* --- Project Carousel (remains static) --- */}
       {projectsData.length > 0 && (
@@ -32,8 +33,9 @@ export default function ProjectsPage(props: any) {
       {/* Pass all projects and the initial search term */}
       <ProjectListClient projects={projectsData} initialSearchTerm={initialSearchTerm} />
 
-      {/* Scroll indicator removed from here, now handled within ProjectListClient */}
+        {/* Scroll indicator removed from here, now handled within ProjectListClient */}
 
+      </div>
     </div>
   );
 }
