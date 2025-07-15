@@ -24,7 +24,7 @@ import { useRouter } from 'next/navigation';
 
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white px-4 py-8">
+    <main className="min-h-screen bg-black text-white px-4 py-8">
       {/* Hero section */}
       <section className="mb-16 text-center">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl fullhd:text-5xl 2k:text-6xl font-bold mb-4 text-center">Welcome to My Portfolio</h1>

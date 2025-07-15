@@ -97,12 +97,12 @@ const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
 
   // ---- Layout Constants ----
   const paddingTop = 20;
-  const paddingBottom = 40;
+  const paddingBottom = 80;
   const nodeRadius = 14;
   const strokeWidth = 4;
 
   // Adjust vertical spacing to fill the available height better
-  const verticalSpacing = 180; // Reduced to fit content better in 80vh
+  const verticalSpacing = 220; // Increased to better distribute items in available space
 
   // Widen the SVG so text has room. We’ll fill the container, so just keep a sensible ratio:
   const svgWidth = 400; // Increase width again
