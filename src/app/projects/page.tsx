@@ -1,39 +1,31 @@
-// src/app/projects/page.tsx - Now a Server Component
-import type { Metadata } from "next";
-import TopProjectBillboard from "@/components/TopProjectBillboard";
-import ProjectListClient from "@/components/ProjectListClient"; // Import the new client component
-import { projectsData } from "@/data/projects";
+'use client';
 
-// Metadata can be defined in Server Components
-export const metadata: Metadata = {
-  title: "My Projects - Ruben Swarts",
-  description: "A showcase of projects I've built, demonstrating modern web technologies.",
-};
+import React from 'react';
+import { projectsData } from '@/data/projects';
+import ProjectCard from '@/components/ProjectCard';
+import FadeInStagger from '@/components/FadeInStagger';
+import { motion } from 'framer-motion';
+import { typography, containers } from '@/utils/responsive';
 
-// Page component receives searchParams prop - Use 'any' workaround for props type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function ProjectsPage(props: any) {
-  const { searchParams } = props; // Destructure searchParams
-  // Extract initial search term from server-side props
-  const initialSearchTerm = typeof searchParams?.search === 'string' ? searchParams.search : '';
-
+export default function ProjectsPage() {
   return (
-    // Main container for the projects page content
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-6 text-center text-gray-100">My Projects</h1>
-
-      {/* --- Project Carousel (remains static) --- */}
-      {projectsData.length > 0 && (
-        <TopProjectBillboard projects={projectsData} />
-      )}
-      {/* --- End Carousel --- */}
-
-      {/* --- Render the Client Component for Filtering and Listing --- */}
-      {/* Pass all projects and the initial search term */}
-      <ProjectListClient projects={projectsData} initialSearchTerm={initialSearchTerm} />
-
-      {/* Scroll indicator removed from here, now handled within ProjectListClient */}
-
+    <div className={`min-h-screen bg-gray-900 text-white p-4 sm:p-6 md:p-8`}>
+      <div className={`${containers.standard} mx-auto`}>
+        <FadeInStagger staggerDelay={75} animationDuration={1000}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl fullhd:text-5xl 2k:text-6xl font-bold mb-6 sm:mb-8 text-center text-gray-100">My Projects</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            {projectsData.map((project, index) => (
+              <motion.div
+                key={project.id}
+                whileHover={{ y: -10 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </div>
+        </FadeInStagger>
+      </div>
     </div>
   );
 }

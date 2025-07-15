@@ -6,6 +6,7 @@ import WordFadeIn from '@/components/WordFadeIn';
 import JourneyTimeline from '@/components/JourneyTimeline';
 // Removed CodeBlock import
 import { motion } from 'framer-motion';
+import { typography, spacing, containers } from '@/utils/responsive';
 
 interface JourneyPhase {
   id: string;
@@ -119,13 +120,13 @@ The code speaks back.`;
       {/* --- Timeline (Sticky) --- */}
       <div
         className="
-          w-64 xl:w-80
+          w-48 sm:w-56 md:w-64 xl:w-80
           flex-shrink-0
           sticky top-16
           hidden md:block
           dark:border-gray-700
-          p-0 pr-8
-          -translate-x-35
+          p-0 pr-4 lg:pr-8
+          -translate-x-20 lg:-translate-x-35
         "
         style={{ height: 'calc(100vh - 4rem)' }} // or something that suits your layout
       >
@@ -140,11 +141,11 @@ The code speaks back.`;
       </div>
 
       {/* --- Main Content (No overflow-y-auto) --- */}
-      <div className="flex-grow px-4 md:px-8 lg:px-16">
+      <div className="flex-grow px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         {/* Intro / About Section */}
         <section
           id="about-top"
-          className="min-h-screen flex flex-col items-center p-4 md:p-8 pt-16 pb-16 text-center"
+          className="min-h-screen flex flex-col items-center p-4 sm:p-6 md:p-8 pt-12 sm:pt-16 pb-16 text-center"
         >
           {/* Use FadeInStagger for the rest, but remove second fade from the button */}
           <FadeInStagger
@@ -152,34 +153,34 @@ The code speaks back.`;
             animationDuration={500}
             className="w-full flex flex-col items-center"
           >
-            <div className="max-w-3xl w-full">
-              <h1 className="text-3xl font-bold mb-4">About Me</h1>
-              <p className="mb-4">
+            <div className={`${containers.narrow} w-full`}>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl font-bold mb-4 sm:mb-6">About Me</h1>
+              <p className="text-sm sm:text-base md:text-lg fullhd:text-base 2k:text-lg mb-4 sm:mb-6 px-2 sm:px-4">
                 With my background in Physics BSc. and Applied Data Science MSc., coupled
                 with my industry experience and interest in programming and GIS, I worked on several interesting projects over the years. On this page, you can learn more about my background. 
               </p>
             </div>
 
-            <div className="flex-grow flex flex-col justify-center translate-y-20 items-center w-full max-w-3xl my-8">
-              <div className="inline-block p-6 bg-gray-100 dark:bg-gray-900 rounded-md text-center shadow-md">
+            <div className="flex-grow flex flex-col justify-center translate-y-10 sm:translate-y-16 md:translate-y-20 items-center w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl my-6 sm:my-8">
+              <div className="inline-block p-4 sm:p-6 bg-gray-100 dark:bg-gray-900 rounded-md text-center shadow-md">
                 <WordFadeIn
                   text={poem}
                   wordDelay={300}
                   lineDelay={2000}
                   animationDuration={1500}
-                  className="text-lg italic text-gray-500 dark:text-gray-300"
+                  className="text-sm sm:text-base md:text-lg fullhd:text-base 2k:text-lg italic text-gray-500 dark:text-gray-300"
                 />
               </div>
             </div>
 
             {/* Skills + Tech Stack */}
-            <div className="max-w-3xl w-full mb-8 translate-y-45">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left md:text-center">
+            <div className={`${containers.narrow} w-full mb-6 sm:mb-8 translate-y-20 sm:translate-y-30 md:translate-y-45`}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-left md:text-center">
                 <div>
-                  <h2 className="text-2xl font-semibold mb-2">Skills</h2>
+                  <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl font-semibold mb-2 sm:mb-3">Skills</h2>
                   <FadeInStagger
                     as="ul"
-                    className="list-disc list-inside mb-4 text-left mx-auto md:inline-block"
+                    className="list-disc list-inside mb-4 text-left mx-auto md:inline-block text-sm sm:text-base fullhd:text-sm 2k:text-base"
                     staggerDelay={150}
                     animationDuration={400}
                   >
@@ -190,10 +191,10 @@ The code speaks back.`;
                   </FadeInStagger>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold mb-2">Website Tech Stack</h2>
+                  <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl font-semibold mb-2 sm:mb-3">Website Tech Stack</h2>
                   <FadeInStagger
                     as="ul"
-                    className="list-disc list-inside text-left mx-auto md:inline-block"
+                    className="list-disc list-inside text-left mx-auto md:inline-block text-sm sm:text-base fullhd:text-sm 2k:text-base"
                     staggerDelay={150}
                     animationDuration={400}
                   >
@@ -207,8 +208,8 @@ The code speaks back.`;
             </div>
 
             {/* Single animation on "Discover my journey" */}
-            <div className = "translate-y-50"/* no second fade in/out; just one animation or none */>
-              <p className="text-base font-medium tracking-wide  mb-3">
+            <div className="translate-y-30 sm:translate-y-40 md:translate-y-50">
+              <p className="text-sm sm:text-base fullhd:text-sm 2k:text-base font-medium tracking-wide mb-3">
                 Discover my journey
               </p>
               <motion.button
@@ -231,7 +232,7 @@ The code speaks back.`;
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-10 h-10"
+                  className="w-8 h-8 sm:w-10 sm:h-10"
                 >
                   <path
                     strokeLinecap="round"
@@ -250,21 +251,21 @@ The code speaks back.`;
           <section
             key={phase.id}
             id={phase.id}
-            className={`min-h-screen flex flex-col justify-center items-center p-4 md:p-8 relative ${
+            className={`min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 relative ${
               index % 2 === 0
                 ? 'bg-gray-50 dark:bg-gray-800'
                 : 'bg-white dark:bg-gray-900'
             }`}
           >
-            <div className="max-w-5xl w-full md:flex md:flex-row md:items-start md:justify-center">
+            <div className="max-w-3xl sm:max-w-4xl lg:max-w-5xl w-full md:flex md:flex-row md:items-start md:justify-center">
               {/* Main content */}
-              <div className="md:w-2/3 text-center md:text-left">
+              <div className="md:w-2/3 text-center md:text-left px-2 sm:px-4">
                 <motion.h2
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
                   transition={{ duration: 0.6 }}
-                  className="text-3xl font-bold mb-6"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl font-bold mb-4 sm:mb-6"
                 >
                   {phase.title}
                 </motion.h2>
@@ -273,7 +274,7 @@ The code speaks back.`;
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-lg text-gray-700 dark:text-gray-300"
+                  className="text-base sm:text-lg md:text-xl fullhd:text-lg 2k:text-xl text-gray-700 dark:text-gray-300"
                 >
                   {phase.content}
                 </motion.p>
@@ -281,7 +282,7 @@ The code speaks back.`;
 
               {/* Conditionally show sidebar text if active */}
               {phase.sidebarContent && activeSection === phase.id && (
-                <div className="md:w-1/3 md:pl-12 mt-8 md:mt-0 flex justify-center md:justify-start">
+                <div className="md:w-1/3 md:pl-6 lg:pl-12 mt-6 sm:mt-8 md:mt-0 flex justify-center md:justify-start">
                   <div className="text-left w-full">
                     {/* Always use WordFadeIn as sidebarContent is now always string */}
                     <WordFadeIn
@@ -290,8 +291,8 @@ The code speaks back.`;
                       wordDelay={150}
                       lineDelay={1000}
                       animationDuration={1500}
-                      // Apply base styling
-                      className="font-mono text-xs text-gray-500 dark:text-gray-400 whitespace-pre-wrap"
+                      // Apply responsive font sizing
+                      className="font-mono text-[10px] sm:text-xs fullhd:text-[10px] 2k:text-xs text-gray-500 dark:text-gray-400 whitespace-pre-wrap"
                       // Conditionally render as HTML only for the physics section
                       renderAsHTML={phase.id === 'bachelor'}
                     />
@@ -302,7 +303,7 @@ The code speaks back.`;
 
             {/* Scroll-down button (to next) */}
             {index < journeyPhases.length - 1 && (
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+              <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2">
                 <button
                   onClick={() => scrollToSection(journeyPhases[index + 1].id)}
                   aria-label={`Scroll down to ${journeyPhases[index + 1].title}`}
@@ -314,7 +315,7 @@ The code speaks back.`;
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-8 h-8"
+                    className="w-6 h-6 sm:w-8 sm:h-8"
                   >
                     <path
                       strokeLinecap="round"

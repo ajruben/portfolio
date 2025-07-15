@@ -3,7 +3,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css"; // Keep this for Tailwind
 import Header from "@/components/Header"; 
-import Footer from "@/components/Footer"; 
+import Footer from "@/components/Footer";
+import dynamic from 'next/dynamic';
+
+// Dynamically import ResponsiveShowcase only in development
+const ResponsiveShowcase = dynamic(() => import('@/components/ResponsiveShowcase'), {
+  ssr: false,
+}); 
 
 // Importing global styles and components
 // Importing the Inter font from Google Fonts
@@ -43,6 +49,8 @@ export default function RootLayout({
             {children} {/* Page content will be rendered here */}
           </main>
           <Footer />
+          {/* Show responsive debug tool in development */}
+          {process.env.NODE_ENV === 'development' && <ResponsiveShowcase />}
         </div>
       </body>
     </html>
