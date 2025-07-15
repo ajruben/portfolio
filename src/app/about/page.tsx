@@ -144,7 +144,7 @@ The code speaks back.`;
         {/* Intro / About Section */}
         <section
           id="about-top"
-          className="min-h-[56vh] md:min-h-[64vh] flex flex-col items-center p-4 sm:p-6 md:p-8 pt-6 sm:pt-8 md:pt-12 pb-8 text-center"
+          className="min-h-[60vh] md:min-h-[70vh] flex flex-col items-center p-4 sm:p-6 md:p-8 pt-6 sm:pt-8 md:pt-12 pb-12 text-center"
         >
           {/* Use FadeInStagger for the rest, but remove second fade from the button */}
           <FadeInStagger
@@ -207,7 +207,7 @@ The code speaks back.`;
             </div>
 
             {/* Single animation on "Discover my journey" */}
-            <div className="translate-y-6 sm:translate-y-8 md:translate-y-10">
+            <div className="translate-y-2 sm:translate-y-3 md:translate-y-4">
               <p className="text-sm sm:text-base fullhd:text-sm 2k:text-base font-medium tracking-wide mb-3">
                 Discover my journey
               </p>

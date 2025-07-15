@@ -96,13 +96,13 @@ const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
   }, []); // Empty dependency array ensures this runs only once on mount
 
   // ---- Layout Constants ----
-  const paddingTop = 0;
-  const paddingBottom = 0;
+  const paddingTop = 20;
+  const paddingBottom = 40;
   const nodeRadius = 14;
   const strokeWidth = 4;
 
-  // Adjust vertical spacing to be halfway between previous values
-  const verticalSpacing = 208; // Approx. halfway between 140 and 275
+  // Adjust vertical spacing to fill the available height better
+  const verticalSpacing = 180; // Reduced to fit content better in 80vh
 
   // Widen the SVG so text has room. We’ll fill the container, so just keep a sensible ratio:
   const svgWidth = 400; // Increase width again
@@ -242,7 +242,7 @@ const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
                 xmlns="http://www.w3.org/1999/xhtml"
               >
                 <div
-                  className={`p-2 sm:p-3 lg:p-4 font-medium text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl fullhd:text-xl 2k:text-2xl cursor-pointer select-none ${textAlignClass} ${currentTextColorClass}`}
+                  className={`p-2 sm:p-3 lg:p-4 font-medium text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl fullhd:text-2xl 2k:text-3xl cursor-pointer select-none ${textAlignClass} ${currentTextColorClass}`}
                   onClick={() => scrollToSection(section.id)}
                   style={{
                     transition: 'color 0.3s ease-in-out',
