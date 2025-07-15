@@ -2,16 +2,14 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// import FadeInStagger from '@/components/FadeInStagger'; // Remove FadeInStagger
-import { motion } from 'framer-motion'; // Import motion
-import TopProjectBillboard from '@/components/TopProjectBillboard';
-import { projectsData } from '@/data/projects';
-import Link from 'next/link'; // Import Link
-
-// Removed metadata export as it's not allowed in Client Components
-// export const metadata: Metadata = { ... };
-
-export default function Home() {
+  import TopProjectBillboard from '@/components/TopProjectBillboard';
+  import { projectsData } from '@/data/projects';
+  import Link from 'next/link'; // Import Link
+  
+  // Removed metadata export as it's not allowed in Client Components
+  // export const metadata: Metadata = { ... };
+  
+  export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
 
@@ -24,41 +22,13 @@ export default function Home() {
 
   // Removed poem definition
 
-  // Estimate header height (p-4 = 1rem = 16px => 4 * 16 = 64px)
-  const headerHeight = '64px'; // Or adjust if header height changes
-
-  // Framer Motion Variants
-  const containerVariants = {
-    hidden: {}, // Container doesn't animate itself, just orchestrates children
-    visible: {
-      transition: {
-        staggerChildren: 0.4, // Time between each child animating
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
-
 
   return (
-    // Main container for full height layout - Use motion.div
-    <motion.div
-      className={`flex flex-col min-h-[calc(100vh-${headerHeight})]`}
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-        {/* Child 1 for staggering: Top content area */}
-        <motion.div variants={itemVariants} className="flex flex-col justify-center items-center px-4 pt-12 md:pt-16">
-          <div className="w-full max-w-2xl"> {/* Keep width constraints */}
-            <h1 className="text-4xl font-bold mb-4 text-center">Welcome to My Portfolio</h1>
-            <p className="text-lg mb-4 text-center">
+    <main className="min-h-screen bg-gray-900 text-white px-4 py-8">
+      {/* Hero section */}
+      <section className="mb-16 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl fullhd:text-5xl 2k:text-6xl font-bold mb-4 text-center">Welcome to My Portfolio</h1>
+            <p className="text-base sm:text-lg md:text-xl fullhd:text-lg 2k:text-xl mb-4 text-center">
               Hi, I&apos;m Ruben.
             </p>
             {/* Link the paragraph and add a subtle icon */}
@@ -94,21 +64,18 @@ export default function Home() {
               </form>
             </div>
             {/* End Search Bar Section */}
-          </div>
-        </motion.div>
+      </section>
 
-        {/* Spacer Div - Stays outside staggering, handles layout */}
-        <div className="flex-grow"></div>
+      {/* Spacer Div - Stays outside staggering, handles layout */}
+      <div className="flex-grow"></div>
 
-        {/* Child 2 for staggering: Bottom content area */}
-        <motion.div variants={itemVariants} className="w-full px-4 pb-12 md:pb-16">
-          <Link href="/projects" className="hover:underline">
-            <h2 className="text-3xl font-bold mb-6 text-center">Featured Projects</h2>
-          </Link>
+      {/* Featured Projects section */}
+      <section className="max-w-5xl lg:max-w-6xl xl:max-w-7xl fullhd:max-w-6xl 2k:max-w-7xl mx-auto mb-16">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl fullhd:text-4xl 2k:text-5xl font-bold mb-6 text-center">Featured Projects</h2>
           {projectsData.length > 0 && (
             <TopProjectBillboard projects={projectsData} />
           )}
-        </motion.div>
-    </motion.div>
+      </section>
+    </main>
   );
 }

@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css"; // Keep this for Tailwind
 import Header from "@/components/Header"; 
-import Footer from "@/components/Footer"; 
+import Footer from "@/components/Footer";
+import ClientProviders from "@/components/ClientProviders";
 
 // Importing global styles and components
 // Importing the Inter font from Google Fonts
@@ -37,13 +38,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}> {/* Apply Inter font to the body */}
         {/* Tailwind CSS classes for styling */}
-        <div className="flex flex-col min-h-screen"> {/* Flex layout for sticky footer */}
-          <Header />
-          <main className="flex-grow container mx-auto px-4 py-8 fullhd:max-w-fullhd 4k:max-w-4k"> {/* Main content area */}
-            {children} {/* Page content will be rendered here */}
-          </main>
-          <Footer />
-        </div>
+        <ClientProviders>
+          <div className="flex flex-col min-h-screen"> {/* Flex layout for sticky footer */}
+            <Header />
+            <main className="flex-grow container mx-auto px-4 py-8 fullhd:max-w-fullhd 4k:max-w-4k"> {/* Main content area */}
+              {children} {/* Page content will be rendered here */}
+            </main>
+            <Footer />
+          </div>
+        </ClientProviders>
       </body>
     </html>
   );

@@ -45,10 +45,39 @@ const config: Config = {
       // Add background size utility
       backgroundSize: {
         '200': '200% 100%',
+      },
+      // Add fluid font sizes using clamp()
+      fontSize: {
+        'fluid-xs': 'clamp(0.75rem, 1.5vw, 0.875rem)',
+        'fluid-sm': 'clamp(0.875rem, 1.8vw, 1rem)',
+        'fluid-base': 'clamp(1rem, 2vw, 1.125rem)',
+        'fluid-lg': 'clamp(1.125rem, 2.5vw, 1.25rem)',
+        'fluid-xl': 'clamp(1.25rem, 3vw, 1.5rem)',
+        'fluid-2xl': 'clamp(1.5rem, 3.5vw, 1.875rem)',
+        'fluid-3xl': 'clamp(1.875rem, 4vw, 2.25rem)',
+        'fluid-4xl': 'clamp(2.25rem, 5vw, 3rem)',
+        'fluid-5xl': 'clamp(3rem, 6vw, 3.75rem)',
+        'fluid-6xl': 'clamp(3.75rem, 7vw, 4.5rem)',
+      },
+      // Add spacing scale for better responsive design
+      spacing: {
+        'fluid-xs': 'clamp(0.5rem, 1vw, 0.75rem)',
+        'fluid-sm': 'clamp(0.75rem, 1.5vw, 1rem)',
+        'fluid-md': 'clamp(1rem, 2vw, 1.5rem)',
+        'fluid-lg': 'clamp(1.5rem, 3vw, 2rem)',
+        'fluid-xl': 'clamp(2rem, 4vw, 3rem)',
       }
     },
+    // Better responsive breakpoints
     screens: {
+      'xs': '475px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
       'fullhd': '1920px',
+      '2k': '2560px',
       '4k': '3840px',
     },
   },

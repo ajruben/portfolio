@@ -36,7 +36,7 @@ const Project1Content: React.FC<ProjectContentProps> = ({ project }) => {
 
   return (
     <div className="space-y-8 text-gray-300">
-      <h3 className="text-3xl font-bold border-b border-gray-600 pb-3 text-gray-100">
+                              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl fullhd:text-3xl 2k:text-4xl font-bold border-b border-gray-600 pb-3 text-gray-100">
         QGIS Plugin for Acoustic Modeling & Analysis (dBvision)
       </h3>
 
