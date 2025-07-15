@@ -125,7 +125,7 @@ The code speaks back.`;
           hidden md:block
           dark:border-gray-700
           p-0 pr-2 lg:pr-4
-          -translate-x-8 lg:-translate-x-12 xl:-translate-x-16 fullhd:-translate-x-12 2k:-translate-x-16
+          translate-x-2 lg:translate-x-0 xl:-translate-x-4 fullhd:translate-x-0 2k:-translate-x-4
         "
         style={{ height: 'calc(80vh - 4rem)' }} // Reduced height to prevent it from being too tall
       >
@@ -144,7 +144,7 @@ The code speaks back.`;
         {/* Intro / About Section */}
         <section
           id="about-top"
-          className="min-h-[70vh] md:min-h-[80vh] flex flex-col items-center p-4 sm:p-6 md:p-8 pt-8 sm:pt-12 md:pt-16 pb-12 text-center"
+          className="min-h-[56vh] md:min-h-[64vh] flex flex-col items-center p-4 sm:p-6 md:p-8 pt-6 sm:pt-8 md:pt-12 pb-8 text-center"
         >
           {/* Use FadeInStagger for the rest, but remove second fade from the button */}
           <FadeInStagger
@@ -160,7 +160,7 @@ The code speaks back.`;
               </p>
             </div>
 
-            <div className="flex-grow flex flex-col justify-center translate-y-4 sm:translate-y-6 md:translate-y-8 items-center w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl my-4 sm:my-6">
+            <div className="flex-grow flex flex-col justify-center translate-y-2 sm:translate-y-3 md:translate-y-4 items-center w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl my-2 sm:my-3">
               <div className="inline-block p-4 sm:p-6 bg-gray-100 dark:bg-gray-900 rounded-md text-center shadow-md">
                 <WordFadeIn
                   text={poem}
@@ -173,7 +173,7 @@ The code speaks back.`;
             </div>
 
             {/* Skills + Tech Stack */}
-            <div className="max-w-3xl w-full mb-4 sm:mb-6 translate-y-8 sm:translate-y-12 md:translate-y-16">
+            <div className="max-w-3xl w-full mb-2 sm:mb-4 translate-y-4 sm:translate-y-6 md:translate-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-left md:text-center">
                 <div>
                   <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl font-semibold mb-2 sm:mb-3">Skills</h2>
@@ -207,7 +207,7 @@ The code speaks back.`;
             </div>
 
             {/* Single animation on "Discover my journey" */}
-            <div className="translate-y-12 sm:translate-y-16 md:translate-y-20">
+            <div className="translate-y-6 sm:translate-y-8 md:translate-y-10">
               <p className="text-sm sm:text-base fullhd:text-sm 2k:text-base font-medium tracking-wide mb-3">
                 Discover my journey
               </p>
