@@ -119,15 +119,15 @@ The code speaks back.`;
       {/* --- Timeline (Sticky) --- */}
       <div
         className="
-          w-48 sm:w-56 md:w-64 xl:w-80
+          w-32 md:w-40 lg:w-48 xl:w-56 fullhd:w-48 2k:w-56
           flex-shrink-0
           sticky top-16
           hidden md:block
           dark:border-gray-700
-          p-0 pr-4 lg:pr-8
-          -translate-x-20 lg:-translate-x-35
+          p-0 pr-2 lg:pr-4
+          -translate-x-8 lg:-translate-x-12 xl:-translate-x-16 fullhd:-translate-x-12 2k:-translate-x-16
         "
-        style={{ height: 'calc(100vh - 4rem)' }} // or something that suits your layout
+        style={{ height: 'calc(80vh - 4rem)' }} // Reduced height to prevent it from being too tall
       >
         <FadeInStagger staggerDelay={500} animationDuration={1500}>
           <JourneyTimeline
@@ -144,7 +144,7 @@ The code speaks back.`;
         {/* Intro / About Section */}
         <section
           id="about-top"
-          className="min-h-screen flex flex-col items-center p-4 sm:p-6 md:p-8 pt-12 sm:pt-16 pb-16 text-center"
+          className="min-h-[70vh] md:min-h-[80vh] flex flex-col items-center p-4 sm:p-6 md:p-8 pt-8 sm:pt-12 md:pt-16 pb-12 text-center"
         >
           {/* Use FadeInStagger for the rest, but remove second fade from the button */}
           <FadeInStagger
@@ -160,7 +160,7 @@ The code speaks back.`;
               </p>
             </div>
 
-            <div className="flex-grow flex flex-col justify-center translate-y-10 sm:translate-y-16 md:translate-y-20 items-center w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl my-6 sm:my-8">
+            <div className="flex-grow flex flex-col justify-center translate-y-4 sm:translate-y-6 md:translate-y-8 items-center w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl my-4 sm:my-6">
               <div className="inline-block p-4 sm:p-6 bg-gray-100 dark:bg-gray-900 rounded-md text-center shadow-md">
                 <WordFadeIn
                   text={poem}
@@ -173,7 +173,7 @@ The code speaks back.`;
             </div>
 
             {/* Skills + Tech Stack */}
-            <div className="max-w-3xl w-full mb-6 sm:mb-8 translate-y-20 sm:translate-y-30 md:translate-y-45">
+            <div className="max-w-3xl w-full mb-4 sm:mb-6 translate-y-8 sm:translate-y-12 md:translate-y-16">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-left md:text-center">
                 <div>
                   <h2 className="text-xl sm:text-2xl md:text-3xl fullhd:text-2xl 2k:text-3xl font-semibold mb-2 sm:mb-3">Skills</h2>
@@ -207,7 +207,7 @@ The code speaks back.`;
             </div>
 
             {/* Single animation on "Discover my journey" */}
-            <div className="translate-y-30 sm:translate-y-40 md:translate-y-50">
+            <div className="translate-y-12 sm:translate-y-16 md:translate-y-20">
               <p className="text-sm sm:text-base fullhd:text-sm 2k:text-base font-medium tracking-wide mb-3">
                 Discover my journey
               </p>

@@ -242,7 +242,7 @@ const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
                 xmlns="http://www.w3.org/1999/xhtml"
               >
                 <div
-                  className={`p-2 sm:p-3 lg:p-4 font-medium text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[30px] fullhd:text-2xl 2k:text-[30px] cursor-pointer select-none ${textAlignClass} ${currentTextColorClass}`}
+                  className={`p-2 sm:p-3 lg:p-4 font-medium text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl fullhd:text-xl 2k:text-2xl cursor-pointer select-none ${textAlignClass} ${currentTextColorClass}`}
                   onClick={() => scrollToSection(section.id)}
                   style={{
                     transition: 'color 0.3s ease-in-out',
